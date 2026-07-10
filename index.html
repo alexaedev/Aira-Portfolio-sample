@@ -20,8 +20,6 @@
             --text-muted: #8a8a90;
             --accent-dev: #c97b63;
             --accent-admin: #6b8c7c;
-            --accent-dev-light: rgba(201,123,99,0.08);
-            --accent-admin-light: rgba(107,140,124,0.08);
             --gradient-dev: linear-gradient(135deg, #c97b63, #d4a08c);
             --gradient-admin: linear-gradient(135deg, #6b8c7c, #8aaa9a);
             --radius-card: 20px;
@@ -369,22 +367,6 @@
             color: var(--text-primary);
             margin-bottom: 0.25rem;
         }
-        .service-rate {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.2rem 0.8rem;
-            border-radius: var(--radius-pill);
-            display: inline-block;
-            margin-bottom: 0.75rem;
-        }
-        .service-card.dev-card .service-rate {
-            color: var(--accent-dev);
-            background: rgba(201,123,99,0.06);
-        }
-        .service-card.admin-card .service-rate {
-            color: var(--accent-admin);
-            background: rgba(107,140,124,0.06);
-        }
         .service-card ul { list-style: none; }
         .service-card ul li {
             font-size: 0.85rem;
@@ -443,19 +425,29 @@
         .pill.dev-pill:hover { background: rgba(201,123,99,0.08); }
         .pill.admin-pill:hover { background: rgba(107,140,124,0.08); }
 
-        /* ── TOOLS ── */
-        .tools-category { margin-bottom: 2.5rem; }
-        .tools-cat-label {
+        /* ── TOOLS WITH SEPARATION ── */
+        .tools-grid-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .tools-column .tools-cat-label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--text-muted);
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-subtle);
+            border-bottom: 2px solid var(--border-subtle);
         }
-        .tools-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .tools-column.dev-col .tools-cat-label { color: var(--accent-dev); border-color: var(--accent-dev); }
+        .tools-column.admin-col .tools-cat-label { color: var(--accent-admin); border-color: var(--accent-admin); }
+        .tools-column .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
         .tool-badge {
             display: flex;
             align-items: center;
@@ -733,6 +725,10 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+            .tools-grid-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
             .nav-links {
                 display: none;
             }
@@ -824,7 +820,7 @@
 <!-- ─── SERVICES WITH SEPARATION ─── -->
 <section id="services">
     <div class="container">
-        <p class="section-tag">Services &amp; Rates</p>
+        <p class="section-tag">Services</p>
         <h2 class="section-title">Two Niches — <span class="dev-highlight">One</span> <span class="admin-highlight">Professional</span></h2>
         <p class="section-sub">Choose the expertise you need. I'm equally comfortable in both worlds.</p>
         <div class="services-grid">
@@ -836,7 +832,6 @@
                 <div class="service-card dev-card">
                     <div class="service-icon">⚡</div>
                     <h3>Web Development</h3>
-                    <span class="service-rate">$10 – $15 / hr</span>
                     <ul>
                         <li>Laravel &amp; PHP full-stack development</li>
                         <li>Custom web applications &amp; APIs</li>
@@ -848,7 +843,6 @@
                 <div class="service-card dev-card">
                     <div class="service-icon">🧪</div>
                     <h3>System Testing &amp; QA</h3>
-                    <span class="service-rate">$8 – $12 / hr</span>
                     <ul>
                         <li>Manual testing &amp; bug reporting</li>
                         <li>User acceptance testing</li>
@@ -860,7 +854,6 @@
                 <div class="service-card dev-card">
                     <div class="service-icon">🎨</div>
                     <h3>UI/UX Design</h3>
-                    <span class="service-rate">$10 – $15 / hr</span>
                     <ul>
                         <li>Figma prototypes &amp; wireframes</li>
                         <li>Modern, clean UI design</li>
@@ -877,7 +870,6 @@
                 <div class="service-card admin-card">
                     <div class="service-icon">📋</div>
                     <h3>Admin &amp; Operations Support</h3>
-                    <span class="service-rate">$6 – $10 / hr</span>
                     <ul>
                         <li>General administration &amp; coordination</li>
                         <li>Document management &amp; data entry</li>
@@ -889,7 +881,6 @@
                 <div class="service-card admin-card">
                     <div class="service-icon">👔</div>
                     <h3>Executive Assistant</h3>
-                    <span class="service-rate">$8 – $12 / hr</span>
                     <ul>
                         <li>Calendar &amp; email management</li>
                         <li>Meeting coordination &amp; note-taking</li>
@@ -901,7 +892,6 @@
                 <div class="service-card admin-card">
                     <div class="service-icon">📊</div>
                     <h3>Data &amp; Document Management</h3>
-                    <span class="service-rate">$6 – $9 / hr</span>
                     <ul>
                         <li>Data entry &amp; spreadsheet management</li>
                         <li>File organization &amp; digital filing</li>
@@ -924,6 +914,62 @@
                 <span class="pill admin-pill">Operations Strategy</span>
                 <span class="pill dev-pill">AI Integration</span>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── TOOLS WITH SEPARATION ─── -->
+<section id="tools" class="alt-bg">
+    <div class="container">
+        <p class="section-tag">Tools &amp; Platforms</p>
+        <h2 class="section-title">I Already Know <span class="dev-highlight">The Tools</span> <span class="admin-highlight">You Use</span></h2>
+        <p class="section-sub">No onboarding headaches. I'm ready to work with your stack from day one.</p>
+
+        <div class="tools-grid-wrapper">
+            
+            <!-- ===== DEV TOOLS ===== -->
+            <div class="tools-column dev-col">
+                <div class="tools-cat-label">⚡ Development Stack</div>
+                <div class="tools-grid">
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#FF2D20;">P</div> PHP</div>
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F05340;">L</div> Laravel</div>
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#00758F;">M</div> MySQL</div>
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F7DF1E;">J</div> JavaScript</div>
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#3776AB;">P</div> Python</div>
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#02569B;">F</div> Flutter</div>
+                </div>
+                <div class="tools-cat-label" style="margin-top:1.5rem;">🎨 Design &amp; Prototyping</div>
+                <div class="tools-grid">
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F24E1E;">F</div> Figma</div>
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#1C1C1E;">C</div> Canva</div>
+                    <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#31A8FF;">P</div> Photoshop</div>
+                </div>
+            </div>
+
+            <!-- ===== ADMIN TOOLS ===== -->
+            <div class="tools-column admin-col">
+                <div class="tools-cat-label">📊 Productivity &amp; AI</div>
+                <div class="tools-grid">
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#10A37F;">C</div> ChatGPT</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#1E90FF;">D</div> DeepSeek</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#4285F4;">G</div> Gemini</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#000000;">C</div> Claude AI</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#217346;">E</div> Excel</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#0F9D58;">D</div> Google Docs</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#00897B;">S</div> Sheets</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#FF6F00;">S</div> Slides</div>
+                </div>
+                <div class="tools-cat-label" style="margin-top:1.5rem;">📧 Communication &amp; Collaboration</div>
+                <div class="tools-grid">
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#4A154B;">S</div> Slack</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#25D366;">W</div> WhatsApp</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#1F8CEB;">I</div> Intercom</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#2D8CFF;">Z</div> Zoom</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#00897B;">G</div> Google Meet</div>
+                    <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#e4964d;">R</div> Ring Central</div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -972,48 +1018,6 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-</section>
-
-<!-- ─── TOOLS ─── -->
-<section id="tools" class="alt-bg">
-    <div class="container">
-        <p class="section-tag">Tools &amp; Platforms</p>
-        <h2 class="section-title">I Already Know <span class="dev-highlight">The Tools</span> <span class="admin-highlight">You Use</span></h2>
-        <p class="section-sub">No onboarding headaches. I'm ready to work with your stack from day one.</p>
-
-        <div class="tools-category">
-            <div class="tools-cat-label">⚡ Development</div>
-            <div class="tools-grid">
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#FF2D20;">P</div> PHP</div>
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F05340;">L</div> Laravel</div>
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#00758F;">M</div> MySQL</div>
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F7DF1E;">J</div> JavaScript</div>
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#3776AB;">P</div> Python</div>
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#02569B;">F</div> Flutter</div>
-            </div>
-        </div>
-
-        <div class="tools-category">
-            <div class="tools-cat-label">🎨 Design</div>
-            <div class="tools-grid">
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F24E1E;">F</div> Figma</div>
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#1C1C1E;">C</div> Canva</div>
-                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#31A8FF;">P</div> Photoshop</div>
-            </div>
-        </div>
-
-        <div class="tools-category">
-            <div class="tools-cat-label">📊 Productivity &amp; AI</div>
-            <div class="tools-grid">
-                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#10A37F;">C</div> ChatGPT</div>
-                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#1E90FF;">D</div> DeepSeek</div>
-                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#4285F4;">G</div> Gemini</div>
-                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#000000;">C</div> Claude AI</div>
-                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#217346;">E</div> Excel</div>
-                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#0F9D58;">D</div> Google Docs</div>
-            </div>
         </div>
     </div>
 </section>

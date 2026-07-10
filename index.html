@@ -443,76 +443,6 @@
         .pill.dev-pill:hover { background: rgba(201,123,99,0.08); }
         .pill.admin-pill:hover { background: rgba(107,140,124,0.08); }
 
-        /* ── PACKAGES ── */
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        .pkg {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-card);
-            padding: 2rem;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: var(--shadow-card);
-        }
-        .pkg:hover { transform: translateY(-4px); }
-        .pkg.featured-dev { border-color: rgba(201,123,99,0.12); background: rgba(201,123,99,0.02); }
-        .pkg.featured-admin { border-color: rgba(107,140,124,0.12); background: rgba(107,140,124,0.02); }
-        .pkg-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        .pkg h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-        .pkg-price-dev { color: var(--accent-dev); }
-        .pkg-price-admin { color: var(--accent-admin); }
-        .pkg-price {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-        .pkg-period { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem; }
-        .pkg-features { list-style: none; margin-bottom: 1.5rem; text-align: left; }
-        .pkg-features li {
-            font-size: 0.85rem;
-            padding: 0.35rem 0;
-            border-bottom: 1px solid var(--border-subtle);
-            display: flex;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-        }
-        .pkg-features li::before {
-            content: '✓';
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-        .pkg.featured-dev .pkg-features li::before { color: var(--accent-dev); }
-        .pkg.featured-admin .pkg-features li::before { color: var(--accent-admin); }
-        .popular-badge {
-            color: #fff;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 0.2rem 0.8rem;
-            border-radius: var(--radius-pill);
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        .popular-badge.dev-badge { background: var(--gradient-dev); }
-        .popular-badge.admin-badge { background: var(--gradient-admin); }
-
         /* ── TOOLS ── */
         .tools-category { margin-bottom: 2.5rem; }
         .tools-cat-label {
@@ -796,9 +726,6 @@
             .contact-grid {
                 grid-template-columns: 1fr;
             }
-            .packages-grid {
-                grid-template-columns: 1fr;
-            }
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
@@ -876,7 +803,7 @@
                     <div class="trait"><div class="trait-dot dev"></div>Full-Stack Laravel</div>
                     <div class="trait"><div class="trait-dot admin"></div>System Testing</div>
                     <div class="trait"><div class="trait-dot dev"></div>UI/UX Design</div>
-                    <div class="trait"><div class="trait-dot admin"></div>Technical Support</div>
+                    <div class="trait"><div class="trait-dot admin"></div>Executive Assistant</div>
                     <div class="trait"><div class="trait-dot admin"></div>Admin &amp; Ops</div>
                     <div class="trait"><div class="trait-dot dev"></div>Fast Learner</div>
                 </div>
@@ -960,14 +887,14 @@
                 </div>
                 
                 <div class="service-card admin-card">
-                    <div class="service-icon">🎧</div>
-                    <h3>Technical Support</h3>
-                    <span class="service-rate">$7 – $10 / hr</span>
+                    <div class="service-icon">👔</div>
+                    <h3>Executive Assistant</h3>
+                    <span class="service-rate">$8 – $12 / hr</span>
                     <ul>
-                        <li>User support &amp; troubleshooting</li>
-                        <li>Help desk &amp; ticket management</li>
-                        <li>System onboarding &amp; training</li>
-                        <li>Bug triage &amp; user feedback collection</li>
+                        <li>Calendar &amp; email management</li>
+                        <li>Meeting coordination &amp; note-taking</li>
+                        <li>Travel arrangements &amp; expense tracking</li>
+                        <li>Executive-level communication support</li>
                     </ul>
                 </div>
                 
@@ -996,60 +923,6 @@
                 <span class="pill dev-pill">Cloud Deployment</span>
                 <span class="pill admin-pill">Operations Strategy</span>
                 <span class="pill dev-pill">AI Integration</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ─── PACKAGES ─── -->
-<section class="alt-bg">
-    <div class="container">
-        <p class="section-tag">Packages</p>
-        <h2 class="section-title">Simple, <span class="dev-highlight">Flexible</span> <span class="admin-highlight">Pricing</span></h2>
-        <p class="section-sub">Choose the package that fits your needs. All packages include a free consultation to align on your goals.</p>
-        <div class="packages-grid">
-            <div class="pkg">
-                <div class="pkg-label">Flexible</div>
-                <h3>Hourly</h3>
-                <div class="pkg-price pkg-price-dev">$6–$15</div>
-                <div class="pkg-period">per hour · pay as you go</div>
-                <ul class="pkg-features">
-                    <li>Pay only for work delivered</li>
-                    <li>No minimum commitment</li>
-                    <li>Perfect for small tasks &amp; fixes</li>
-                    <li>Tracked hours with updates</li>
-                </ul>
-                <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Get Started</a>
-            </div>
-            <div class="pkg featured-dev">
-                <div class="popular-badge dev-badge">Most Popular</div>
-                <div class="pkg-label">Dedicated</div>
-                <h3>Weekly Retainer</h3>
-                <div class="pkg-price pkg-price-dev">$240–$400</div>
-                <div class="pkg-period">per week · 20–30 hrs</div>
-                <ul class="pkg-features">
-                    <li>Dedicated weekly support hours</li>
-                    <li>Consistent availability</li>
-                    <li>Priority response time</li>
-                    <li>Weekly progress report</li>
-                    <li>Mix of any service type</li>
-                </ul>
-                <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Book This Plan</a>
-            </div>
-            <div class="pkg featured-admin">
-                <div class="popular-badge admin-badge">Best Value</div>
-                <div class="pkg-label">Full-Service</div>
-                <h3>Monthly Retainer</h3>
-                <div class="pkg-price pkg-price-admin">$1,000–$1,500</div>
-                <div class="pkg-period">per month · full-time</div>
-                <ul class="pkg-features">
-                    <li>Full-time availability (160 hrs)</li>
-                    <li>All services included</li>
-                    <li>Fastest response time</li>
-                    <li>Monthly performance review</li>
-                    <li>Best value for ongoing work</li>
-                </ul>
-                <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Let's Talk</a>
             </div>
         </div>
     </div>
@@ -1292,7 +1165,7 @@
                         <option>System Testing</option>
                         <option>UI/UX Design</option>
                         <option>Admin Support</option>
-                        <option>Technical Support</option>
+                        <option>Executive Assistant</option>
                         <option>Multiple Services</option>
                     </select>
                 </div>
@@ -1309,7 +1182,7 @@
 <!-- ─── FOOTER ─── -->
 <footer>
     <p class="footer-name">Paul David <span class="dev-color">S.</span> <span class="admin-color">Ferrer</span></p>
-    <p><span class="dev-color">Web Development</span> · <span class="admin-color">System Testing</span> · <span class="dev-color">UI/UX Design</span> · <span class="admin-color">Admin Support</span></p>
+    <p><span class="dev-color">Web Development</span> · <span class="admin-color">System Testing</span> · <span class="dev-color">UI/UX Design</span> · <span class="admin-color">Executive Assistant</span></p>
     <p style="margin-top:0.75rem;">📍 Philippines · <a href="mailto:pauldavidferrer7@gmail.com">pauldavidferrer7@gmail.com</a> · Available Worldwide</p>
     <p style="margin-top:1rem; font-size:0.7rem; opacity:0.4;">© 2026 Paul David S. Ferrer. All rights reserved.</p>
 </footer>

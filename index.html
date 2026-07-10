@@ -1,503 +1,780 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paul David S. Ferrer · Web Developer & VA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paul David S. Ferrer · Dev &amp; Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
+        /* ── ROOT (custom, different feel) ── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         :root {
-            --cream: #FAF7F2;
-            --warm-white: #FFFDF9;
-            --charcoal: #1C1C1E;
-            --soft-black: #2D2D2D;
-            --accent: #B07D62;
-            --accent-light: #E8D5C8;
-            --accent-dark: #8A5E46;
-            --teal: #3A7D74;
-            --teal-light: #D0E8E6;
-            --teal-dark: #2A5E57;
-            --muted: #7A7570;
-            --border: #E8E0D8;
-            --section-alt: #F5EFE8;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
-        body {
-            font-family:'DM Sans', sans-serif;
-            background:var(--warm-white);
-            color:var(--soft-black);
-            line-height:1.7;
+            --bg-body: #0b0e17;
+            --bg-card: #121926;
+            --bg-alt: #0f1520;
+            --surface: #1a2332;
+            --border-subtle: rgba(255,255,255,0.05);
+            --text-primary: #f0f2f8;
+            --text-secondary: #a8b2d4;
+            --text-muted: #6b7a9f;
+            --accent-1: #6c8cff;
+            --accent-2: #a78bfa;
+            --accent-3: #f472b6;
+            --gradient-main: linear-gradient(135deg, #6c8cff, #a78bfa);
+            --gradient-glow: linear-gradient(135deg, rgba(108,140,255,0.15), rgba(167,139,250,0.10));
+            --radius-card: 20px;
+            --radius-pill: 50px;
+            --shadow-card: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* NAV */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-1); border-radius: 10px; }
+
+        /* ── NAV ── */
         nav {
-            position:fixed; top:0; left:0; right:0; z-index:100;
-            background:rgba(255,253,249,0.95);
-            backdrop-filter:blur(8px);
-            border-bottom:1px solid var(--border);
-            padding:0 5%;
-            display:flex; align-items:center; justify-content:space-between;
-            height:64px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(11,14,23,0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 5%;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .nav-logo {
-            font-family:'Playfair Display',serif;
-            font-size:1.25rem; color:var(--charcoal);
-            text-decoration:none; font-weight:700;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
         }
-        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
         .nav-links a {
-            text-decoration:none; color:var(--muted);
-            font-size:0.875rem; font-weight:500;
-            transition:color 0.2s;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
         }
-        .nav-links a:hover { color:var(--accent); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-main);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover::after { width: 100%; }
         .nav-cta {
-            background:var(--accent); color:white;
-            padding:0.5rem 1.25rem; border-radius:50px;
-            text-decoration:none; font-size:0.875rem;
-            font-weight:500; transition:background 0.2s;
+            background: var(--gradient-main);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(108,140,255,0.2);
         }
-        .nav-cta:hover { background:var(--accent-dark); }
+        .nav-cta:hover { transform: scale(1.04); box-shadow: 0 0 32px rgba(108,140,255,0.35); }
 
-        /* HERO */
+        /* ── BUTTONS ── */
+        .btn-primary {
+            background: var(--gradient-main);
+            color: #fff;
+            padding: 0.9rem 2.2rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(108,140,255,0.25);
+        }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 40px rgba(108,140,255,0.35); }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 0.9rem 2.2rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.04); border-color: var(--accent-1); transform: translateY(-3px); }
+
+        /* ── HERO ── */
         .hero {
-            min-height:100vh; padding:120px 5% 80px;
-            display:grid; grid-template-columns:1fr 1fr;
-            gap:4rem; align-items:center;
-            max-width:1200px; margin:0 auto;
+            min-height: 100vh;
+            padding: 120px 5% 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .hero-badge {
-            display:inline-block;
-            background:var(--teal-light); color:var(--teal-dark);
-            font-size:0.8rem; font-weight:600;
-            letter-spacing:0.08em; text-transform:uppercase;
-            padding:0.35rem 1rem; border-radius:50px;
-            margin-bottom:1.5rem;
+            display: inline-block;
+            background: rgba(108,140,255,0.12);
+            border: 1px solid rgba(108,140,255,0.15);
+            color: var(--accent-1);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 1.2rem;
+            border-radius: var(--radius-pill);
+            margin-bottom: 1.5rem;
         }
         .hero h1 {
-            font-family:'Playfair Display',serif;
-            font-size:clamp(2.5rem,5vw,4rem);
-            line-height:1.15; color:var(--charcoal);
-            margin-bottom:1.25rem;
+            font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.25rem;
         }
-        .hero h1 span { color:var(--accent); }
+        .hero h1 span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         .hero-tagline {
-            font-size:1.1rem; color:var(--muted);
-            max-width:480px; margin-bottom:2rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin-bottom: 2rem;
         }
-        .hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem; }
-        .btn-primary {
-            background:var(--accent); color:white;
-            padding:0.85rem 2rem; border-radius:50px;
-            text-decoration:none; font-weight:600; font-size:0.95rem;
-            transition:all 0.2s; display:inline-block;
-        }
-        .btn-primary:hover { background:var(--accent-dark); transform:translateY(-1px); }
-        .btn-outline {
-            border:1.5px solid var(--charcoal); color:var(--charcoal);
-            padding:0.85rem 2rem; border-radius:50px;
-            text-decoration:none; font-weight:500; font-size:0.95rem;
-            transition:all 0.2s; display:inline-block;
-        }
-        .btn-outline:hover { background:var(--charcoal); color:white; }
-        .hero-trust { display:flex; gap:2rem; }
-        .trust-item { text-align:center; }
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .hero-trust { display: flex; gap: 2.5rem; }
+        .trust-item { text-align: center; }
         .trust-num {
-            font-family:'Playfair Display',serif;
-            font-size:1.75rem; font-weight:700; color:var(--accent);
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .trust-label { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
-        .hero-image { display:flex; align-items:center; justify-content:center; position:relative; }
+        .trust-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        /* ── PHOTO FRAME ── */
+        .hero-image { display: flex; align-items: center; justify-content: center; position: relative; }
         .photo-frame {
-            width:380px; height:480px; border-radius:180px 180px 120px 120px;
-            background:var(--accent-light);
-            display:flex; align-items:flex-end; justify-content:center;
-            overflow:hidden; position:relative;
-            border:3px solid var(--accent);
+            width: 380px;
+            height: 480px;
+            border-radius: 40% 40% 20% 20% / 50% 50% 20% 20%;
+            background: var(--gradient-glow);
+            border: 2px solid rgba(108,140,255,0.2);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(108,140,255,0.08), inset 0 0 80px rgba(108,140,255,0.03);
         }
         .photo-frame img {
-            width:100%; height:100%;
-            object-fit:cover; object-position:center top;
-            display:block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
         }
         .hero-deco {
-            position:absolute; top:-20px; right:-20px;
-            width:100px; height:100px; border-radius:50%;
-            background:var(--teal-light); opacity:0.6; z-index:-1;
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108,140,255,0.08), transparent 70%);
+            z-index: -1;
         }
         .hero-deco2 {
-            position:absolute; bottom:20px; left:-30px;
-            width:60px; height:60px; border-radius:50%;
-            background:var(--accent-light); opacity:0.8; z-index:-1;
+            position: absolute;
+            bottom: 10px; left: -40px;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167,139,250,0.08), transparent 70%);
+            z-index: -1;
         }
 
-        /* SECTIONS */
-        section { padding:5rem 5%; }
-        .container { max-width:1100px; margin:0 auto; }
+        /* ── SECTIONS ── */
+        section { padding: 5rem 5%; }
+        .container { max-width: 1100px; margin: 0 auto; }
         .section-tag {
-            font-size:0.75rem; font-weight:600;
-            text-transform:uppercase; letter-spacing:0.1em;
-            color:var(--accent); margin-bottom:0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-1);
+            margin-bottom: 0.75rem;
         }
         .section-title {
-            font-family:'Playfair Display',serif;
-            font-size:clamp(2rem,3.5vw,2.75rem);
-            color:var(--charcoal); margin-bottom:1rem;
+            font-size: clamp(2rem, 3.2vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .section-sub {
-            color:var(--muted); max-width:560px;
-            font-size:1rem; margin-bottom:3rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            font-size: 1rem;
+            margin-bottom: 3rem;
         }
-        .alt-bg { background:var(--section-alt); }
+        .alt-bg { background: var(--bg-alt); }
 
-        /* ABOUT */
+        /* ── ABOUT ── */
         .about-grid {
-            display:grid; grid-template-columns:1fr 1fr;
-            gap:4rem; align-items:center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
-        .about-text p { color:var(--soft-black); margin-bottom:1.25rem; font-size:1rem; }
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .about-text p strong { color: #fff; }
         .traits {
-            display:grid; grid-template-columns:1fr 1fr;
-            gap:0.75rem; margin-top:1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
         }
         .trait {
-            display:flex; align-items:center; gap:0.5rem;
-            font-size:0.9rem; font-weight:500;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
         }
         .trait-dot {
-            width:8px; height:8px; border-radius:50%;
-            background:var(--accent); flex-shrink:0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-1);
+            flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(108,140,255,0.3);
         }
+
         .about-card {
-            background:var(--charcoal); color:white;
-            border-radius:20px; padding:2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-card);
         }
         .about-card h3 {
-            font-family:'Playfair Display',serif;
-            font-size:1.5rem; margin-bottom:1.5rem;
-            color:var(--accent-light);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .about-card p { color:rgba(255,255,255,0.8); font-size:0.95rem; line-height:1.8; }
+        .about-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; }
         .about-card .usp {
-            background:var(--accent); border-radius:12px;
-            padding:1.25rem; margin-top:1.5rem;
+            background: var(--gradient-glow);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(108,140,255,0.06);
         }
-        .about-card .usp p { color:white; font-weight:500; font-size:0.9rem; }
+        .about-card .usp p { color: var(--text-primary); font-weight: 500; }
 
-        /* SERVICES */
+        /* ── SERVICES ── */
         .services-grid {
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-            gap:1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
         }
         .service-card {
-            background:white; border:1px solid var(--border);
-            border-radius:16px; padding:2rem;
-            transition:all 0.25s; position:relative; overflow:hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
         }
         .service-card:hover {
-            transform:translateY(-4px);
-            box-shadow:0 16px 40px rgba(0,0,0,0.08);
-            border-color:var(--accent-light);
+            transform: translateY(-6px);
+            border-color: rgba(108,140,255,0.2);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3), 0 0 0 1px rgba(108,140,255,0.08);
         }
         .service-card::before {
-            content:''; position:absolute; top:0; left:0; right:0;
-            height:3px; background:var(--accent);
+            content: '';
+            display: block;
+            height: 3px;
+            width: 40px;
+            background: var(--gradient-main);
+            border-radius: 10px;
+            margin-bottom: 1rem;
         }
-        .service-card.teal::before { background:var(--teal); }
-        .service-icon { font-size:2rem; margin-bottom:1rem; }
+        .service-card.teal::before { background: linear-gradient(135deg, #a78bfa, #6c8cff); }
+        .service-icon { font-size: 2rem; margin-bottom: 0.75rem; }
         .service-card h3 {
-            font-family:'Playfair Display',serif;
-            font-size:1.15rem; color:var(--charcoal);
-            margin-bottom:0.5rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.25rem;
         }
         .service-rate {
-            font-size:0.8rem; font-weight:600;
-            color:var(--accent); background:var(--accent-light);
-            padding:0.25rem 0.75rem; border-radius:50px;
-            display:inline-block; margin-bottom:1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-1);
+            background: rgba(108,140,255,0.08);
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-pill);
+            display: inline-block;
+            margin-bottom: 1rem;
         }
-        .service-rate.teal-rate { color:var(--teal-dark); background:var(--teal-light); }
-        .service-card ul { list-style:none; }
+        .service-card ul { list-style: none; }
         .service-card ul li {
-            font-size:0.875rem; color:var(--soft-black);
-            padding:0.3rem 0; display:flex;
-            gap:0.5rem; align-items:flex-start;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
         }
         .service-card ul li::before {
-            content:'✓'; color:var(--accent);
-            font-weight:700; flex-shrink:0;
+            content: '✦';
+            color: var(--accent-1);
+            font-weight: 700;
+            flex-shrink: 0;
         }
-        .service-card.teal ul li::before { color:var(--teal); }
 
-        /* EXPANDING SKILLS */
+        /* ── EXPANDING SKILLS ── */
         .skills-expanding {
-            background:var(--charcoal); border-radius:20px;
-            padding:2.5rem; margin-top:2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 2.5rem;
+            margin-top: 2.5rem;
+            box-shadow: var(--shadow-card);
         }
         .skills-expanding h3 {
-            font-family:'Playfair Display',serif;
-            font-size:1.35rem; color:white; margin-bottom:0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
         }
-        .skills-expanding p {
-            color:rgba(255,255,255,0.7); font-size:0.9rem;
-            margin-bottom:1.5rem;
-        }
-        .expanding-pills {
-            display:flex; gap:0.75rem; flex-wrap:wrap;
-        }
+        .skills-expanding p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .expanding-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; }
         .pill {
-            background:rgba(255,255,255,0.1); color:white;
-            padding:0.5rem 1.25rem; border-radius:50px;
-            font-size:0.85rem; border:1px solid rgba(255,255,255,0.15);
+            background: rgba(108,140,255,0.06);
+            color: var(--text-secondary);
+            padding: 0.4rem 1.2rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.8rem;
+            border: 1px solid rgba(108,140,255,0.08);
+            transition: var(--transition);
         }
+        .pill:hover { background: rgba(108,140,255,0.12); color: #fff; }
 
-        /* PACKAGES */
+        /* ── PACKAGES ── */
         .packages-grid {
-            display:grid; grid-template-columns:repeat(3,1fr);
-            gap:1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
         }
         .pkg {
-            background:white; border:1px solid var(--border);
-            border-radius:16px; padding:2rem; text-align:center;
-            transition:all 0.25s;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
         }
-        .pkg:hover { border-color:var(--accent); }
+        .pkg:hover { border-color: rgba(108,140,255,0.2); transform: translateY(-4px); }
         .pkg.featured {
-            background:var(--charcoal); color:white;
-            border-color:var(--charcoal);
+            border-color: rgba(108,140,255,0.2);
+            background: var(--gradient-glow);
         }
         .pkg-label {
-            font-size:0.75rem; text-transform:uppercase;
-            letter-spacing:0.1em; color:var(--muted);
-            margin-bottom:0.5rem; font-weight:600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
-        .pkg.featured .pkg-label { color:var(--accent-light); }
         .pkg h3 {
-            font-family:'Playfair Display',serif;
-            font-size:1.4rem; color:var(--charcoal);
-            margin-bottom:0.75rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
-        .pkg.featured h3 { color:white; }
         .pkg-price {
-            font-size:2rem; font-weight:700;
-            color:var(--accent); margin-bottom:0.25rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-1);
+            margin-bottom: 0.25rem;
         }
-        .pkg-period { font-size:0.8rem; color:var(--muted); margin-bottom:1.25rem; }
-        .pkg.featured .pkg-period { color:rgba(255,255,255,0.5); }
-        .pkg-features { list-style:none; margin-bottom:1.5rem; text-align:left; }
+        .pkg-period { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+        .pkg-features { list-style: none; margin-bottom: 1.5rem; text-align: left; }
         .pkg-features li {
-            font-size:0.875rem; padding:0.35rem 0;
-            border-bottom:1px solid var(--border);
-            display:flex; gap:0.5rem;
-        }
-        .pkg.featured .pkg-features li {
-            border-color:rgba(255,255,255,0.1);
-            color:rgba(255,255,255,0.85);
+            font-size: 0.85rem;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            gap: 0.5rem;
+            color: var(--text-secondary);
         }
         .pkg-features li::before {
-            content:'✓'; color:var(--accent);
-            font-weight:700; flex-shrink:0;
+            content: '✓';
+            color: var(--accent-1);
+            font-weight: 700;
+            flex-shrink: 0;
         }
         .popular-badge {
-            background:var(--accent); color:white;
-            font-size:0.7rem; font-weight:600;
-            text-transform:uppercase; letter-spacing:0.06em;
-            padding:0.25rem 0.75rem; border-radius:50px;
-            display:inline-block; margin-bottom:1rem;
+            background: var(--gradient-main);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-pill);
+            display: inline-block;
+            margin-bottom: 1rem;
         }
 
-        /* TOOLS */
-        .tools-category { margin-bottom:3rem; }
+        /* ── TOOLS ── */
+        .tools-category { margin-bottom: 2.5rem; }
         .tools-cat-label {
-            font-size:0.8rem; text-transform:uppercase;
-            letter-spacing:0.08em; color:var(--muted);
-            font-weight:600; margin-bottom:1rem;
-            padding-bottom:0.5rem; border-bottom:1px solid var(--border);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
         }
-        .tools-grid { display:flex; flex-wrap:wrap; gap:0.75rem; }
+        .tools-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
         .tool-badge {
-            display:flex; align-items:center; gap:0.6rem;
-            background:white; border:1px solid var(--border);
-            border-radius:10px;
-            padding:0.6rem 1.1rem; font-size:0.875rem;
-            font-weight:500; color:var(--soft-black);
-            transition:all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
         }
-        .tool-badge:hover { border-color:var(--accent); color:var(--accent); }
+        .tool-badge:hover { border-color: rgba(108,140,255,0.2); color: #fff; }
         .tool-icon {
-            width:20px; height:20px; border-radius:5px;
-            display:flex; align-items:center; justify-content:center;
-            font-size:0.7rem; font-weight:700; color:white;
-            flex-shrink:0;
+            width: 22px; height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
         }
 
-        /* PORTFOLIO */
+        /* ── PORTFOLIO ── */
         .portfolio-grid {
-            display:grid; grid-template-columns:repeat(2,1fr);
-            gap:1.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
         .portfolio-card {
-            background:white; border:1px solid var(--border);
-            border-radius:16px; overflow:hidden;
-            transition:all 0.25s;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            box-shadow: var(--shadow-card);
         }
         .portfolio-card:hover {
-            transform:translateY(-3px);
-            box-shadow:0 12px 32px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+            border-color: rgba(108,140,255,0.15);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.3), 0 0 0 1px rgba(108,140,255,0.06);
         }
         .portfolio-thumb {
-            height:160px; display:flex;
-            align-items:center; justify-content:center;
-            font-size:2.5rem; overflow:hidden;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            overflow: hidden;
+            background: var(--gradient-glow);
+            border-bottom: 1px solid var(--border-subtle);
         }
         .portfolio-thumb img {
-            width:100%; height:100%;
-            object-fit:cover; display:block;
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
         }
-        .portfolio-body { padding:1.5rem; }
+        .portfolio-body { padding: 1.5rem; }
         .portfolio-body h4 {
-            font-family:'Playfair Display',serif;
-            font-size:1.05rem; color:var(--charcoal);
-            margin-bottom:0.5rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
         .portfolio-body p {
-            font-size:0.875rem; color:var(--muted);
-            line-height:1.6;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
         .portfolio-tag {
-            font-size:0.75rem; background:var(--accent-light);
-            color:var(--accent-dark); padding:0.2rem 0.65rem;
-            border-radius:50px; display:inline-block;
-            margin-top:0.75rem; font-weight:500;
+            font-size: 0.7rem;
+            background: rgba(108,140,255,0.08);
+            color: var(--accent-1);
+            padding: 0.2rem 0.7rem;
+            border-radius: var(--radius-pill);
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-weight: 500;
         }
 
-        /* VIDEO */
-        .video-section { text-align:center; }
-        .video-box {
-            max-width:680px; margin:0 auto;
-            background:var(--charcoal); border-radius:20px;
-            overflow:hidden;
-        }
-        .video-box iframe {
-            width:100%; border:none;
-        }
-        .video-script {
-            max-width:680px; margin:2rem auto 0;
-            text-align:left; background:white;
-            border:1px solid var(--border); border-radius:16px;
-            padding:2rem;
-        }
-        .video-script h4 {
-            font-family:'Playfair Display',serif;
-            color:var(--charcoal); font-size:1.1rem;
-            margin-bottom:1rem;
-        }
-        .video-script p { font-size:0.9rem; color:var(--muted); line-height:1.8; }
-        .video-script strong { color:var(--soft-black); }
-
-        /* EXPERIENCE */
-        .timeline { max-width:700px; }
+        /* ── EXPERIENCE ── */
+        .timeline { max-width: 700px; }
         .exp-item {
-            display:flex; gap:1.5rem;
-            margin-bottom:2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
         .exp-dot-col {
-            display:flex; flex-direction:column;
-            align-items:center; padding-top:4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 4px;
         }
         .exp-dot {
-            width:14px; height:14px; border-radius:50%;
-            background:var(--accent); flex-shrink:0;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(108,140,255,0.2);
         }
-        .exp-line { width:1px; background:var(--border); flex:1; margin-top:6px; }
-        .exp-content h4 { font-weight:600; color:var(--charcoal); margin-bottom:0.2rem; }
+        .exp-line { width: 1px; background: var(--border-subtle); flex: 1; margin-top: 6px; }
+        .exp-content h4 { font-weight: 600; color: #fff; margin-bottom: 0.2rem; }
         .exp-content .exp-role {
-            font-size:0.8rem; color:var(--accent);
-            font-weight:600; text-transform:uppercase;
-            letter-spacing:0.06em; margin-bottom:0.5rem;
+            font-size: 0.75rem;
+            color: var(--accent-1);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.5rem;
         }
-        .exp-content p { font-size:0.9rem; color:var(--muted); }
+        .exp-content p { font-size: 0.9rem; color: var(--text-secondary); }
 
-        /* CONTACT */
+        /* ── VIDEO ── */
+        .video-section { text-align: center; }
+        .video-box {
+            max-width: 680px;
+            margin: 0 auto;
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+        }
+        .video-box iframe { width: 100%; border: none; }
+        .video-script {
+            max-width: 680px;
+            margin: 2rem auto 0;
+            text-align: left;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 2rem;
+            box-shadow: var(--shadow-card);
+        }
+        .video-script h4 {
+            font-weight: 700;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .video-script p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; }
+        .video-script strong { color: #fff; }
+
+        /* ── CONTACT ── */
         .contact-grid {
-            display:grid; grid-template-columns:1fr 1fr;
-            gap:4rem; align-items:start;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
         }
-        .contact-text p { color:var(--soft-black); margin-bottom:1.5rem; }
-        .contact-methods { display:flex; flex-direction:column; gap:1rem; }
+        .contact-text p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
         .contact-method {
-            display:flex; align-items:center; gap:1rem;
-            text-decoration:none; background:white;
-            border:1px solid var(--border); border-radius:12px;
-            padding:1rem 1.25rem; transition:all 0.2s;
-            color:var(--soft-black);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            transition: var(--transition);
+            color: var(--text-primary);
         }
-        .contact-method:hover { border-color:var(--accent); color:var(--accent); }
+        .contact-method:hover {
+            border-color: rgba(108,140,255,0.2);
+            transform: translateX(6px);
+        }
         .contact-icon {
-            width:40px; height:40px; border-radius:10px;
-            display:flex; align-items:center; justify-content:center;
-            font-size:1.1rem; flex-shrink:0;
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            background: rgba(108,140,255,0.06);
         }
-        .contact-detail span { display:block; font-size:0.75rem; color:var(--muted); }
-        .contact-detail strong { font-size:0.9rem; }
+        .contact-detail span { display: block; font-size: 0.7rem; color: var(--text-muted); }
+        .contact-detail strong { font-size: 0.9rem; font-weight: 600; }
         .contact-form {
-            background:white; border:1px solid var(--border);
-            border-radius:20px; padding:2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 2rem;
+            box-shadow: var(--shadow-card);
         }
-        .form-group { margin-bottom:1.25rem; }
+        .form-group { margin-bottom: 1.25rem; }
         .form-group label {
-            display:block; font-size:0.8rem;
-            font-weight:600; color:var(--charcoal);
-            margin-bottom:0.4rem; text-transform:uppercase;
-            letter-spacing:0.06em;
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
-        .form-group input, .form-group textarea, .form-group select {
-            width:100%; border:1px solid var(--border);
-            border-radius:10px; padding:0.75rem 1rem;
-            font-family:'DM Sans',sans-serif; font-size:0.9rem;
-            color:var(--soft-black);
-            background:var(--cream); transition:border-color 0.2s;
-            outline:none;
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.02);
+            transition: var(--transition);
+            outline: none;
         }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            border-color:var(--accent);
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent-1);
+            background: rgba(255,255,255,0.04);
         }
-        .form-group textarea { height:120px; resize:vertical; }
+        .form-group textarea { height: 120px; resize: vertical; }
+        .form-group select option { background: var(--bg-body); }
 
-        /* FOOTER */
+        /* ── FOOTER ── */
         footer {
-            background:var(--charcoal); color:rgba(255,255,255,0.7);
-            text-align:center; padding:2.5rem 5%;
-            font-size:0.875rem;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+            padding: 2.5rem 5%;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
-        footer a { color:var(--accent-light); text-decoration:none; }
+        footer a { color: var(--accent-1); text-decoration: none; }
+        footer a:hover { color: #fff; }
         .footer-name {
-            font-family:'Playfair Display',serif;
-            color:white; font-size:1.1rem; margin-bottom:0.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
 
-        /* RESPONSIVE */
-        @media (max-width:768px) {
-            .hero { grid-template-columns:1fr; padding:100px 5% 60px; gap:2.5rem; text-align:center; }
-            .hero-image { display:block; }
-            .photo-frame { width:260px; height:340px; margin:0 auto; }
-            .hero-ctas { justify-content:center; }
-            .hero-trust { justify-content:center; }
-            .about-grid, .contact-grid { grid-template-columns:1fr; }
-            .packages-grid { grid-template-columns:1fr; }
-            .portfolio-grid { grid-template-columns:1fr; }
-            nav .nav-links { display:none; }
-            .traits { grid-template-columns:1fr; }
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 100px 5% 60px;
+                gap: 2.5rem;
+                text-align: center;
+            }
+            .hero-image { display: block; }
+            .photo-frame { width: 260px; height: 340px; margin: 0 auto; }
+            .hero-ctas { justify-content: center; }
+            .hero-trust { justify-content: center; }
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .traits {
+                grid-template-columns: 1fr;
+            }
+            .contact-method:hover {
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ─── NAV ─── -->
 <nav>
-    <a href="#home" class="nav-logo">Paul D. F.</a>
+    <a href="#home" class="nav-logo">P<span style="background:transparent; -webkit-text-fill-color:var(--accent-2);">D</span>F</a>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
@@ -508,271 +785,252 @@
     <a href="mailto:pauldavidferrer7@gmail.com" class="nav-cta">Hire Me</a>
 </nav>
 
-<!-- HERO -->
+<!-- ─── HERO ─── -->
 <section id="home" style="padding:0;">
-<div class="hero">
-    <div class="hero-text">
-        <div class="hero-badge">Available for Full-time / Part-time · Remote</div>
-        <h1>Build, Test, Design —<br><span>I Do It All</span></h1>
-        <p class="hero-tagline">
-            Web developer, system tester, UI designer, and admin generalist — I don't box myself into one title. I solve problems, build systems, and deliver quality work across the board.
-        </p>
-        <div class="hero-ctas">
-            <a href="#contact" class="btn-primary">Hire Me Now</a>
-            <a href="#services" class="btn-outline">View Services</a>
-        </div>
-        <div class="hero-trust">
-            <div class="trust-item">
-                <div class="trust-num">1+</div>
-                <div class="trust-label">Years Exp.</div>
+    <div class="hero">
+        <div class="hero-text">
+            <div class="hero-badge">✦ Available Worldwide · Remote</div>
+            <h1>Build, Test, Design —<br /><span>I Do It All</span></h1>
+            <p class="hero-tagline">
+                Web developer, system tester, UI designer, and admin generalist —
+                I don't box myself into one title. I solve problems, build systems,
+                and deliver quality work across the board.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn-primary">Hire Me Now</a>
+                <a href="#services" class="btn-outline">View Services</a>
             </div>
-            <div class="trust-item">
-                <div class="trust-num">5+</div>
-                <div class="trust-label">Projects</div>
-            </div>
-            <div class="trust-item">
-                <div class="trust-num">100%</div>
-                <div class="trust-label">Remote-Ready</div>
+            <div class="hero-trust">
+                <div class="trust-item"><div class="trust-num">1+</div><div class="trust-label">Years Exp.</div></div>
+                <div class="trust-item"><div class="trust-num">5+</div><div class="trust-label">Projects</div></div>
+                <div class="trust-item"><div class="trust-num">100%</div><div class="trust-label">Remote-Ready</div></div>
             </div>
         </div>
-    </div>
-    <div class="hero-image">
-        <div class="hero-deco"></div>
-        <div class="hero-deco2"></div>
-        <div class="photo-frame">
-            <img src="https://i.imgur.com/9R6qJZJ.jpeg" alt="Paul David S. Ferrer">
+        <div class="hero-image">
+            <div class="hero-deco"></div>
+            <div class="hero-deco2"></div>
+            <div class="photo-frame">
+                <img src="https://i.imgur.com/9R6qJZJ.jpeg" alt="Paul David S. Ferrer" />
+            </div>
         </div>
     </div>
-</div>
 </section>
 
-<!-- ABOUT -->
+<!-- ─── ABOUT ─── -->
 <section id="about" class="alt-bg">
-<div class="container">
-    <p class="section-tag">About Me</p>
-    <h2 class="section-title">The Multi-Skilled Professional Who Delivers</h2>
-    <div class="about-grid">
-        <div class="about-text">
-            <p>Hi, I'm <strong>Paul David S. Ferrer</strong> — a versatile IT professional based in the Philippines. I don't limit myself to one role. Whether it's <strong>web development</strong>, <strong>system testing</strong>, <strong>UI design</strong>, or <strong>general administration</strong>, I bring the same dedication, curiosity, and quality to every task.</p>
-            <p>I led the development of <strong>Corpora-Online</strong> as Team Leader and completed a 486-hour practicum as a System Developer. I've built real-time chat systems, appointment schedulers with feedback, grading systems, and defense management tools — all with a focus on clean code and user-friendly design.</p>
-            <div class="traits">
-                <div class="trait"><div class="trait-dot"></div> Full-Stack Laravel</div>
-                <div class="trait"><div class="trait-dot"></div> System Testing</div>
-                <div class="trait"><div class="trait-dot"></div> UI/UX Design</div>
-                <div class="trait"><div class="trait-dot"></div> Technical Support</div>
-                <div class="trait"><div class="trait-dot"></div> Admin & Operations</div>
-                <div class="trait"><div class="trait-dot"></div> Fast Learner</div>
+    <div class="container">
+        <p class="section-tag">About Me</p>
+        <h2 class="section-title">The Multi-Skilled Professional Who Delivers</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Hi, I'm <strong>Paul David S. Ferrer</strong> — a versatile IT professional based in the Philippines. I don't limit myself to one role. Whether it's <strong>web development</strong>, <strong>system testing</strong>, <strong>UI design</strong>, or <strong>general administration</strong>, I bring the same dedication, curiosity, and quality to every task.</p>
+                <p>I led the development of <strong>Corpora-Online</strong> as Team Leader and completed a 486-hour practicum as a System Developer. I've built real-time chat systems, appointment schedulers with feedback, grading systems, and defense management tools — all with a focus on clean code and user-friendly design.</p>
+                <div class="traits">
+                    <div class="trait"><div class="trait-dot"></div>Full-Stack Laravel</div>
+                    <div class="trait"><div class="trait-dot"></div>System Testing</div>
+                    <div class="trait"><div class="trait-dot"></div>UI/UX Design</div>
+                    <div class="trait"><div class="trait-dot"></div>Technical Support</div>
+                    <div class="trait"><div class="trait-dot"></div>Admin &amp; Ops</div>
+                    <div class="trait"><div class="trait-dot"></div>Fast Learner</div>
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="about-card">
-                <h3>Why Work With Me</h3>
-                <p>I don't just complete tasks — I anticipate what you need next. I'm comfortable wearing multiple hats and thrive in fast-paced environments. Whether you need code written, systems tested, designs polished, or operations streamlined, I'm ready to step in and deliver.</p>
-                <div class="usp">
-                    <p>💡 "I'm not looking for a job title. I'm looking for problems to solve and systems to improve. That's where I shine."</p>
+            <div>
+                <div class="about-card">
+                    <h3>Why Work With Me</h3>
+                    <p>I don't just complete tasks — I anticipate what you need next. I'm comfortable wearing multiple hats and thrive in fast-paced environments. Whether you need code written, systems tested, designs polished, or operations streamlined, I'm ready to step in and deliver.</p>
+                    <div class="usp">
+                        <p>💡 "I'm not looking for a job title. I'm looking for problems to solve and systems to improve. That's where I shine."</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </section>
 
-<!-- SERVICES -->
+<!-- ─── SERVICES ─── -->
 <section id="services">
-<div class="container">
-    <p class="section-tag">Services &amp; Rates</p>
-    <h2 class="section-title">What I Can Do for You</h2>
-    <p class="section-sub">Flexible, transparent rates for startups, agencies, and growing businesses — no matter what you need, I can help.</p>
-    <div class="services-grid">
+    <div class="container">
+        <p class="section-tag">Services &amp; Rates</p>
+        <h2 class="section-title">What I Can Do for You</h2>
+        <p class="section-sub">Flexible, transparent rates for startups, agencies, and growing businesses — no matter what you need, I can help.</p>
+        <div class="services-grid">
 
-        <div class="service-card">
-            <div class="service-icon">💻</div>
-            <h3>Web Development</h3>
-            <span class="service-rate">$10 – $15 / hour</span>
-            <ul>
-                <li>Laravel & PHP development</li>
-                <li>Custom web applications</li>
-                <li>Real-time features (chat, notifications)</li>
-                <li>Database design & optimization</li>
-                <li>API integration</li>
-            </ul>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Web Development</h3>
+                <span class="service-rate">$10 – $15 / hr</span>
+                <ul>
+                    <li>Laravel &amp; PHP development</li>
+                    <li>Custom web applications</li>
+                    <li>Real-time features (chat, notifications)</li>
+                    <li>Database design &amp; optimization</li>
+                    <li>API integration</li>
+                </ul>
+            </div>
+
+            <div class="service-card teal">
+                <div class="service-icon">🧪</div>
+                <h3>System Testing &amp; QA</h3>
+                <span class="service-rate">$8 – $12 / hr</span>
+                <ul>
+                    <li>Manual testing &amp; bug reporting</li>
+                    <li>User acceptance testing</li>
+                    <li>Test case creation</li>
+                    <li>Cross-browser &amp; device testing</li>
+                    <li>Performance &amp; security checks</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>UI/UX Design</h3>
+                <span class="service-rate">$10 – $15 / hr</span>
+                <ul>
+                    <li>Figma prototypes &amp; wireframes</li>
+                    <li>Modern, clean UI design</li>
+                    <li>Design systems &amp; components</li>
+                    <li>Mobile-first responsive layouts</li>
+                    <li>User flow optimization</li>
+                </ul>
+            </div>
+
+            <div class="service-card teal">
+                <div class="service-icon">📋</div>
+                <h3>Admin &amp; Operations</h3>
+                <span class="service-rate">$6 – $10 / hr</span>
+                <ul>
+                    <li>General administration &amp; coordination</li>
+                    <li>Document management &amp; data entry</li>
+                    <li>Technical support for users</li>
+                    <li>Process documentation</li>
+                    <li>Task &amp; project coordination</li>
+                </ul>
+            </div>
+
         </div>
 
-        <div class="service-card teal">
-            <div class="service-icon">🧪</div>
-            <h3>System Testing & QA</h3>
-            <span class="service-rate teal-rate">$8 – $12 / hour</span>
-            <ul>
-                <li>Manual testing & bug reporting</li>
-                <li>User acceptance testing</li>
-                <li>Test case creation</li>
-                <li>Cross-browser & device testing</li>
-                <li>Performance & security checks</li>
-            </ul>
+        <div class="skills-expanding">
+            <h3>🌱 Currently Expanding — Always Learning</h3>
+            <p>I believe in growing with my clients. These are skills I'm actively developing to serve you even better:</p>
+            <div class="expanding-pills">
+                <span class="pill">React.js</span>
+                <span class="pill">Flutter</span>
+                <span class="pill">Cloud Deployment</span>
+                <span class="pill">DevOps Basics</span>
+                <span class="pill">AI Integration</span>
+            </div>
         </div>
-
-        <div class="service-card">
-            <div class="service-icon">🎨</div>
-            <h3>UI/UX Design</h3>
-            <span class="service-rate">$10 – $15 / hour</span>
-            <ul>
-                <li>Figma prototypes & wireframes</li>
-                <li>Modern, clean UI design</li>
-                <li>Design systems & components</li>
-                <li>Mobile-first responsive layouts</li>
-                <li>User flow optimization</li>
-            </ul>
-        </div>
-
-        <div class="service-card teal">
-            <div class="service-icon">📋</div>
-            <h3>Admin & Operations Support</h3>
-            <span class="service-rate teal-rate">$6 – $10 / hour</span>
-            <ul>
-                <li>General administration & coordination</li>
-                <li>Document management & data entry</li>
-                <li>Technical support for users</li>
-                <li>Process documentation</li>
-                <li>Task & project coordination</li>
-            </ul>
-        </div>
-
     </div>
-
-    <div class="skills-expanding">
-        <h3>🌱 Currently Expanding — Always Learning</h3>
-        <p>I believe in growing with my clients. These are skills I'm actively developing to serve you even better:</p>
-        <div class="expanding-pills">
-            <span class="pill">React.js</span>
-            <span class="pill">Flutter</span>
-            <span class="pill">Cloud Deployment</span>
-            <span class="pill">DevOps Basics</span>
-            <span class="pill">AI Integration</span>
-        </div>
-    </div>
-</div>
 </section>
 
-<!-- PACKAGES -->
+<!-- ─── PACKAGES ─── -->
 <section class="alt-bg">
-<div class="container">
-    <p class="section-tag">Packages</p>
-    <h2 class="section-title">Simple, Flexible Pricing</h2>
-    <p class="section-sub">Choose the package that fits your needs. All packages include a free consultation to align on your goals.</p>
-    <div class="packages-grid">
-        <div class="pkg">
-            <div class="pkg-label">Flexible</div>
-            <h3>Hourly</h3>
-            <div class="pkg-price">$6–$15</div>
-            <div class="pkg-period">per hour · pay as you go</div>
-            <ul class="pkg-features">
-                <li>Pay only for work delivered</li>
-                <li>No minimum commitment</li>
-                <li>Perfect for small tasks & fixes</li>
-                <li>Tracked hours with updates</li>
-            </ul>
-            <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Get Started</a>
-        </div>
-        <div class="pkg featured">
-            <div class="popular-badge">Most Popular</div>
-            <div class="pkg-label">Dedicated</div>
-            <h3>Weekly Retainer</h3>
-            <div class="pkg-price">$240–$400</div>
-            <div class="pkg-period">per week · 20–30 hrs dedicated</div>
-            <ul class="pkg-features">
-                <li>Dedicated weekly support hours</li>
-                <li>Consistent availability</li>
-                <li>Priority response time</li>
-                <li>Weekly progress report</li>
-                <li>Mix of any service type</li>
-            </ul>
-            <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Book This Plan</a>
-        </div>
-        <div class="pkg">
-            <div class="pkg-label">Full-Service</div>
-            <h3>Monthly Retainer</h3>
-            <div class="pkg-price">$1,000–$1,500</div>
-            <div class="pkg-period">per month · full-time support</div>
-            <ul class="pkg-features">
-                <li>Full-time availability (160 hrs)</li>
-                <li>All services included</li>
-                <li>Fastest response time</li>
-                <li>Monthly performance review</li>
-                <li>Best value for ongoing work</li>
-            </ul>
-            <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Let's Talk</a>
+    <div class="container">
+        <p class="section-tag">Packages</p>
+        <h2 class="section-title">Simple, Flexible Pricing</h2>
+        <p class="section-sub">Choose the package that fits your needs. All packages include a free consultation to align on your goals.</p>
+        <div class="packages-grid">
+            <div class="pkg">
+                <div class="pkg-label">Flexible</div>
+                <h3>Hourly</h3>
+                <div class="pkg-price">$6–$15</div>
+                <div class="pkg-period">per hour · pay as you go</div>
+                <ul class="pkg-features">
+                    <li>Pay only for work delivered</li>
+                    <li>No minimum commitment</li>
+                    <li>Perfect for small tasks &amp; fixes</li>
+                    <li>Tracked hours with updates</li>
+                </ul>
+                <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Get Started</a>
+            </div>
+            <div class="pkg featured">
+                <div class="popular-badge">Most Popular</div>
+                <div class="pkg-label">Dedicated</div>
+                <h3>Weekly Retainer</h3>
+                <div class="pkg-price">$240–$400</div>
+                <div class="pkg-period">per week · 20–30 hrs</div>
+                <ul class="pkg-features">
+                    <li>Dedicated weekly support hours</li>
+                    <li>Consistent availability</li>
+                    <li>Priority response time</li>
+                    <li>Weekly progress report</li>
+                    <li>Mix of any service type</li>
+                </ul>
+                <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Book This Plan</a>
+            </div>
+            <div class="pkg">
+                <div class="pkg-label">Full-Service</div>
+                <h3>Monthly Retainer</h3>
+                <div class="pkg-price">$1,000–$1,500</div>
+                <div class="pkg-period">per month · full-time</div>
+                <ul class="pkg-features">
+                    <li>Full-time availability (160 hrs)</li>
+                    <li>All services included</li>
+                    <li>Fastest response time</li>
+                    <li>Monthly performance review</li>
+                    <li>Best value for ongoing work</li>
+                </ul>
+                <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Let's Talk</a>
+            </div>
         </div>
     </div>
-</div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- ─── EXPERIENCE ─── -->
 <section id="experience">
-<div class="container">
-    <p class="section-tag">Experience</p>
-    <h2 class="section-title">Where I've Made an Impact</h2>
-    <p class="section-sub">Every role has shaped my ability to deliver across multiple disciplines.</p>
-    <div class="timeline">
+    <div class="container">
+        <p class="section-tag">Experience</p>
+        <h2 class="section-title">Where I've Made an Impact</h2>
+        <p class="section-sub">Every role has shaped my ability to deliver across multiple disciplines.</p>
+        <div class="timeline">
 
-        <div class="exp-item">
-            <div class="exp-dot-col">
-                <div class="exp-dot"></div>
-                <div class="exp-line"></div>
+            <div class="exp-item">
+                <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+                <div class="exp-content">
+                    <div class="exp-role">System Developer</div>
+                    <h4>Corpora-Online — Thesis Repository</h4>
+                    <p>Led the development of a comprehensive repository system for CBMA. Built features including real-time chat, appointment scheduling with feedback, grading system, and defense comments management (R3Comments).</p>
+                </div>
             </div>
-            <div class="exp-content">
-                <div class="exp-role">System Developer</div>
-                <h4>Corpora-Online — Thesis Repository</h4>
-                <p>Led the development of a comprehensive repository system for CBMA. Built features including real-time chat, appointment scheduling with feedback, grading system, and defense comments management (R3Comments).</p>
+
+            <div class="exp-item">
+                <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+                <div class="exp-content">
+                    <div class="exp-role">Practicum</div>
+                    <h4>System Developer (486 hours)</h4>
+                    <p>Completed a 486-hour practicum as a System Developer, gaining hands-on experience in full-stack development, debugging, user support, and production deployment.</p>
+                </div>
             </div>
+
+            <div class="exp-item">
+                <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+                <div class="exp-content">
+                    <div class="exp-role">UI/UX Design</div>
+                    <h4>Design Projects (Figma)</h4>
+                    <p>Created modern, user-friendly UI designs for web and mobile applications — focusing on clean aesthetics, intuitive navigation, and seamless user experiences.</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-dot-col"><div class="exp-dot"></div></div>
+                <div class="exp-content">
+                    <div class="exp-role">Team Leadership</div>
+                    <h4>Capstone Team Leader</h4>
+                    <p>Led a team of developers to build Corpora-Online from concept to deployment — managing timelines, coordinating tasks, and ensuring quality delivery.</p>
+                </div>
+            </div>
+
         </div>
-
-        <div class="exp-item">
-            <div class="exp-dot-col">
-                <div class="exp-dot"></div>
-                <div class="exp-line"></div>
-            </div>
-            <div class="exp-content">
-                <div class="exp-role">Practicum</div>
-                <h4>System Developer (486 hours)</h4>
-                <p>Completed a 486-hour practicum as a System Developer, gaining hands-on experience in full-stack development, debugging, user support, and production deployment.</p>
-            </div>
-        </div>
-
-        <div class="exp-item">
-            <div class="exp-dot-col">
-                <div class="exp-dot"></div>
-                <div class="exp-line"></div>
-            </div>
-            <div class="exp-content">
-                <div class="exp-role">UI/UX Design</div>
-                <h4>Design Projects (Figma)</h4>
-                <p>Created modern, user-friendly UI designs for web and mobile applications — focusing on clean aesthetics, intuitive navigation, and seamless user experiences.</p>
-            </div>
-        </div>
-
-        <div class="exp-item">
-            <div class="exp-dot-col">
-                <div class="exp-dot"></div>
-            </div>
-            <div class="exp-content">
-                <div class="exp-role">Team Leadership</div>
-                <h4>Capstone Team Leader</h4>
-                <p>Led a team of developers to build Corpora-Online from concept to deployment — managing timelines, coordinating tasks, and ensuring quality delivery.</p>
-            </div>
-        </div>
-
     </div>
-</div>
 </section>
 
-<!-- TOOLS -->
+<!-- ─── TOOLS ─── -->
 <section id="tools" class="alt-bg">
-<div class="container">
-    <p class="section-tag">Tools &amp; Platforms</p>
-    <h2 class="section-title">I Already Know the Tools You Use</h2>
-    <p class="section-sub">No onboarding headaches. I'm ready to work with your stack from day one.</p>
+    <div class="container">
+        <p class="section-tag">Tools &amp; Platforms</p>
+        <h2 class="section-title">I Already Know the Tools You Use</h2>
+        <p class="section-sub">No onboarding headaches. I'm ready to work with your stack from day one.</p>
 
-    <div class="tools-section">
         <div class="tools-category">
             <div class="tools-cat-label">⚡ Development</div>
             <div class="tools-grid">
@@ -784,6 +1042,7 @@
                 <div class="tool-badge"><div class="tool-icon" style="background:#02569B;">F</div> Flutter</div>
             </div>
         </div>
+
         <div class="tools-category">
             <div class="tools-cat-label">🎨 Design</div>
             <div class="tools-grid">
@@ -792,6 +1051,7 @@
                 <div class="tool-badge"><div class="tool-icon" style="background:#31A8FF;">P</div> Photoshop</div>
             </div>
         </div>
+
         <div class="tools-category">
             <div class="tools-cat-label">📊 Productivity &amp; AI</div>
             <div class="tools-grid">
@@ -804,181 +1064,174 @@
             </div>
         </div>
     </div>
-</div>
 </section>
 
-<!-- PORTFOLIO -->
+<!-- ─── PORTFOLIO ─── -->
 <section id="portfolio">
-<div class="container">
-    <p class="section-tag">Portfolio</p>
-    <h2 class="section-title">See What I've Built</h2>
-    <p class="section-sub">Real projects — from development to design. Click any card to view the live project or gallery.</p>
-    <div class="portfolio-grid">
+    <div class="container">
+        <p class="section-tag">Portfolio</p>
+        <h2 class="section-title">See What I've Built</h2>
+        <p class="section-sub">Real projects — from development to design. Click any card to view the live project or gallery.</p>
+        <div class="portfolio-grid">
 
-        <a href="https://corpora-online.site/" target="_blank" class="portfolio-card" style="text-decoration:none; color:inherit;">
-            <div class="portfolio-thumb" style="background:linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1)); font-size:3rem; border:1px solid rgba(255,255,255,0.06);">
-                📚
-            </div>
-            <div class="portfolio-body">
-                <h4>Corpora-Online</h4>
-                <p>Thesis repository system for CBMA — with real-time chat, appointment scheduling, grading, and defense comments.</p>
-                <span class="portfolio-tag">Live Site →</span>
-            </div>
-        </a>
+            <a href="https://corpora-online.site/" target="_blank" class="portfolio-card" style="text-decoration:none; color:inherit;">
+                <div class="portfolio-thumb" style="background:linear-gradient(135deg, rgba(108,140,255,0.08), rgba(167,139,250,0.08)); font-size:3rem;">📚</div>
+                <div class="portfolio-body">
+                    <h4>Corpora-Online</h4>
+                    <p>Thesis repository system for CBMA — with real-time chat, appointment scheduling, grading, and defense comments.</p>
+                    <span class="portfolio-tag">Live Site →</span>
+                </div>
+            </a>
 
-        <div class="portfolio-card">
-            <div class="portfolio-thumb" style="background:linear-gradient(135deg, #1a1a2e, #16213e); color:white; font-size:2rem; flex-direction:column; gap:0.5rem;">
-                💬
-                <span style="font-size:0.8rem; opacity:0.6;">Real-time Chat</span>
+            <div class="portfolio-card">
+                <div class="portfolio-thumb" style="background:linear-gradient(135deg, #1a1a2e, #16213e); color:#fff; font-size:2rem; flex-direction:column; gap:0.25rem;">
+                    💬
+                    <span style="font-size:0.7rem; opacity:0.5;">Real-time Chat</span>
+                </div>
+                <div class="portfolio-body">
+                    <h4>Real-time Chat System</h4>
+                    <p>Integrated chat feature enabling seamless communication between students, faculty, and administrators within Corpora-Online.</p>
+                    <span class="portfolio-tag">Laravel · WebSocket</span>
+                </div>
             </div>
-            <div class="portfolio-body">
-                <h4>Real-time Chat System</h4>
-                <p>Integrated chat feature enabling seamless communication between students, faculty, and administrators within Corpora-Online.</p>
-                <span class="portfolio-tag">Laravel · WebSocket</span>
+
+            <div class="portfolio-card">
+                <div class="portfolio-thumb" style="background:linear-gradient(135deg, #2d1b69, #4a2c8a); color:#fff; font-size:2rem; flex-direction:column; gap:0.25rem;">
+                    📅
+                    <span style="font-size:0.7rem; opacity:0.5;">Appointments</span>
+                </div>
+                <div class="portfolio-body">
+                    <h4>Appointment &amp; Feedback System</h4>
+                    <p>Faculty scheduling with automated management and post-meeting feedback collection from students.</p>
+                    <span class="portfolio-tag">Laravel · MySQL</span>
+                </div>
             </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-thumb" style="background:linear-gradient(135deg, #0f4c3a, #1b6b50); color:#fff; font-size:2rem; flex-direction:column; gap:0.25rem;">
+                    📊
+                    <span style="font-size:0.7rem; opacity:0.5;">Grading</span>
+                </div>
+                <div class="portfolio-body">
+                    <h4>Grading System</h4>
+                    <p>Comprehensive grade management with real-time calculations, visualization, and automated report generation.</p>
+                    <span class="portfolio-tag">Laravel · JavaScript</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-thumb" style="background:linear-gradient(135deg, #4a1a2e, #6b2d4a); color:#fff; font-size:2rem; flex-direction:column; gap:0.25rem;">
+                    📝
+                    <span style="font-size:0.7rem; opacity:0.5;">Defense</span>
+                </div>
+                <div class="portfolio-body">
+                    <h4>Defense Comments System</h4>
+                    <p>R3Comments feature for thesis defense management — allowing panel members to provide structured feedback and evaluations.</p>
+                    <span class="portfolio-tag">Laravel · AJAX</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-thumb" style="background:linear-gradient(135deg, #1a1a2e, #2d2d44); color:#fff; font-size:2rem; flex-direction:column; gap:0.25rem;">
+                    🎨
+                    <span style="font-size:0.7rem; opacity:0.5;">UI Design</span>
+                </div>
+                <div class="portfolio-body">
+                    <h4>UI Design (Figma)</h4>
+                    <p>Modern, user-friendly UI/UX designs for web and mobile applications — focused on clean aesthetics and intuitive navigation.</p>
+                    <span class="portfolio-tag">Figma · Prototyping</span>
+                </div>
+            </div>
+
         </div>
-
-        <div class="portfolio-card">
-            <div class="portfolio-thumb" style="background:linear-gradient(135deg, #2d1b69, #4a2c8a); color:white; font-size:2rem; flex-direction:column; gap:0.5rem;">
-                📅
-                <span style="font-size:0.8rem; opacity:0.6;">Appointments</span>
-            </div>
-            <div class="portfolio-body">
-                <h4>Appointment & Feedback System</h4>
-                <p>Faculty scheduling with automated management and post-meeting feedback collection from students.</p>
-                <span class="portfolio-tag">Laravel · MySQL</span>
-            </div>
-        </div>
-
-        <div class="portfolio-card">
-            <div class="portfolio-thumb" style="background:linear-gradient(135deg, #0f4c3a, #1b6b50); color:white; font-size:2rem; flex-direction:column; gap:0.5rem;">
-                📊
-                <span style="font-size:0.8rem; opacity:0.6;">Grading</span>
-            </div>
-            <div class="portfolio-body">
-                <h4>Grading System</h4>
-                <p>Comprehensive grade management with real-time calculations, visualization, and automated report generation.</p>
-                <span class="portfolio-tag">Laravel · JavaScript</span>
-            </div>
-        </div>
-
-        <div class="portfolio-card">
-            <div class="portfolio-thumb" style="background:linear-gradient(135deg, #4a1a2e, #6b2d4a); color:white; font-size:2rem; flex-direction:column; gap:0.5rem;">
-                📝
-                <span style="font-size:0.8rem; opacity:0.6;">Defense Comments</span>
-            </div>
-            <div class="portfolio-body">
-                <h4>Defense Comments System</h4>
-                <p>R3Comments feature for thesis defense management — allowing panel members to provide structured feedback and evaluations.</p>
-                <span class="portfolio-tag">Laravel · AJAX</span>
-            </div>
-        </div>
-
-        <div class="portfolio-card">
-            <div class="portfolio-thumb" style="background:linear-gradient(135deg, #1a1a2e, #2d2d44); color:white; font-size:2rem; flex-direction:column; gap:0.5rem;">
-                🎨
-                <span style="font-size:0.8rem; opacity:0.6;">UI Design</span>
-            </div>
-            <div class="portfolio-body">
-                <h4>UI Design (Figma)</h4>
-                <p>Modern, user-friendly UI/UX designs for web and mobile applications — focused on clean aesthetics and intuitive navigation.</p>
-                <span class="portfolio-tag">Figma · Prototyping</span>
-            </div>
-        </div>
-
     </div>
-</div>
 </section>
 
-<!-- VIDEO -->
+<!-- ─── VIDEO ─── -->
 <section class="alt-bg">
-<div class="container video-section">
-    <p class="section-tag">Video Introduction</p>
-    <h2 class="section-title">Meet Paul — In His Own Words</h2>
-    <p class="section-sub" style="margin:0 auto 2rem;">A quick introduction so you can put a face to the name before we work together.</p>
-    <div class="video-box">
-        <div style="position:relative; width:100%; padding-top:56.25%;">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>
+    <div class="container video-section">
+        <p class="section-tag">Video Introduction</p>
+        <h2 class="section-title">Meet Paul — In His Own Words</h2>
+        <p class="section-sub" style="margin:0 auto 2rem;">A quick introduction so you can put a face to the name before we work together.</p>
+        <div class="video-box">
+            <div style="position:relative; width:100%; padding-top:56.25%;">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="video-script">
+            <h4>🎙️ What You'll Hear in This Video</h4>
+            <p>I talk about my background, my approach to work, and why I'm not just a developer — I'm a problem solver who can step into any role and make things better. I also share my philosophy on learning, adaptability, and delivering real value.</p>
+            <p style="margin-top:0.5rem;"><strong>Key takeaway:</strong> I don't box myself into one title. I build, test, design, support, and organize — whatever it takes to get the job done right.</p>
         </div>
     </div>
-    <div class="video-script">
-        <h4>🎙️ What You'll Hear in This Video</h4>
-        <p>
-            I talk about my background, my approach to work, and why I'm not just a developer — I'm a problem solver who can step into any role and make things better. I also share my philosophy on learning, adaptability, and delivering real value.
-        </p>
-        <p style="margin-top:0.5rem;">
-            <strong>Key takeaway:</strong> I don't box myself into one title. I build, test, design, support, and organize — whatever it takes to get the job done right.
-        </p>
-    </div>
-</div>
 </section>
 
-<!-- CONTACT -->
+<!-- ─── CONTACT ─── -->
 <section id="contact" class="alt-bg">
-<div class="container">
-    <p class="section-tag">Get in Touch</p>
-    <h2 class="section-title">Ready to Work Together?</h2>
-    <div class="contact-grid">
-        <div>
-            <div class="contact-text">
-                <p>Whether you need a developer, a tester, a designer, or someone to keep things running smoothly — I'm ready. I typically respond within a few hours during business days.</p>
-                <p style="margin-top:-0.5rem;">Below are the best ways to reach me. Let's build something great together.</p>
+    <div class="container">
+        <p class="section-tag">Get in Touch</p>
+        <h2 class="section-title">Ready to Work Together?</h2>
+        <div class="contact-grid">
+            <div>
+                <div class="contact-text">
+                    <p>Whether you need a developer, a tester, a designer, or someone to keep things running smoothly — I'm ready. I typically respond within a few hours during business days.</p>
+                    <p style="margin-top:-0.5rem;">Below are the best ways to reach me. Let's build something great together.</p>
+                </div>
+                <div class="contact-methods">
+                    <a href="mailto:pauldavidferrer7@gmail.com" class="contact-method">
+                        <div class="contact-icon" style="background:rgba(108,140,255,0.08);">📧</div>
+                        <div class="contact-detail"><span>Email</span><strong>pauldavidferrer7@gmail.com</strong></div>
+                    </a>
+                    <a href="https://wa.me/639078084749" target="_blank" class="contact-method">
+                        <div class="contact-icon" style="background:rgba(108,140,255,0.08);">💬</div>
+                        <div class="contact-detail"><span>WhatsApp</span><strong>+63 907 8084 749</strong></div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ferrer-paul-david-4a1b71410" target="_blank" class="contact-method">
+                        <div class="contact-icon" style="background:rgba(108,140,255,0.08);">💼</div>
+                        <div class="contact-detail"><span>LinkedIn</span><strong>Paul David Ferrer</strong></div>
+                    </a>
+                    <a href="https://calendly.com/pauldavidferrer/30min" target="_blank" class="contact-method">
+                        <div class="contact-icon" style="background:rgba(108,140,255,0.08);">📅</div>
+                        <div class="contact-detail"><span>Schedule</span><strong>Free 30-min Call</strong></div>
+                    </a>
+                </div>
             </div>
-            <div class="contact-methods">
-                <a href="mailto:pauldavidferrer7@gmail.com" class="contact-method">
-                    <div class="contact-icon" style="background:#E3F2FD;">📧</div>
-                    <div class="contact-detail"><span>Email</span><strong>pauldavidferrer7@gmail.com</strong></div>
-                </a>
-                <a href="https://wa.me/639078084749" target="_blank" class="contact-method">
-                    <div class="contact-icon" style="background:#E8F5E9;">💬</div>
-                    <div class="contact-detail"><span>WhatsApp</span><strong>+63 907 8084 749</strong></div>
-                </a>
-                <a href="https://www.linkedin.com/in/ferrer-paul-david-4a1b71410" target="_blank" class="contact-method">
-                    <div class="contact-icon" style="background:#E8EAF6;">💼</div>
-                    <div class="contact-detail"><span>LinkedIn</span><strong>Paul David Ferrer</strong></div>
-                </a>
-                <a href="https://calendly.com/pauldavidferrer/30min" target="_blank" class="contact-method">
-                    <div class="contact-icon" style="background:#FFF3E0;">📅</div>
-                    <div class="contact-detail"><span>Schedule</span><strong>Free 30-min Call</strong></div>
-                </a>
-            </div>
+            <form class="contact-form" action="https://formspree.io/f/xdabnony" method="POST">
+                <h3 style="font-weight:700; font-size:1.25rem; color:#fff; margin-bottom:1.5rem;">Send Me a Message</h3>
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" placeholder="Jane Smith" required />
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="jane@company.com" required />
+                </div>
+                <div class="form-group">
+                    <label>Service Needed</label>
+                    <select name="service">
+                        <option>Web Development</option>
+                        <option>System Testing</option>
+                        <option>UI/UX Design</option>
+                        <option>Admin Support</option>
+                        <option>Multiple Services</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tell Me About Your Needs</label>
+                    <textarea name="message" placeholder="What are you looking for? Any specific tools or timeline?" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-size:1rem;">Send Message →</button>
+            </form>
         </div>
-        <form class="contact-form" action="https://formspree.io/f/xdabnony" method="POST">
-            <h3 style="font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--charcoal); margin-bottom:1.5rem;">Send Me a Message</h3>
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" name="name" placeholder="Jane Smith" required>
-            </div>
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" name="email" placeholder="jane@company.com" required>
-            </div>
-            <div class="form-group">
-                <label>Service Needed</label>
-                <select name="service">
-                    <option>Web Development</option>
-                    <option>System Testing</option>
-                    <option>UI/UX Design</option>
-                    <option>Admin Support</option>
-                    <option>Multiple Services</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Tell Me About Your Needs</label>
-                <textarea name="message" placeholder="What are you looking for? Any specific tools or timeline?" required></textarea>
-            </div>
-            <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-size:1rem;">Send Message →</button>
-        </form>
     </div>
-</div>
 </section>
 
-<!-- FOOTER -->
+<!-- ─── FOOTER ─── -->
 <footer>
     <p class="footer-name">Paul David S. Ferrer</p>
     <p>Web Development · System Testing · UI/UX Design · Admin Support</p>
     <p style="margin-top:0.75rem;">📍 Philippines · <a href="mailto:pauldavidferrer7@gmail.com">pauldavidferrer7@gmail.com</a> · Available Worldwide</p>
-    <p style="margin-top:1rem; font-size:0.75rem; opacity:0.5;">© 2026 Paul David S. Ferrer. All rights reserved.</p>
+    <p style="margin-top:1rem; font-size:0.7rem; opacity:0.4;">© 2026 Paul David S. Ferrer. All rights reserved.</p>
 </footer>
 
 </body>

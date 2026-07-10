@@ -9,8 +9,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        
+        /* ── AESTHETIC WOODS COLOR PALETTE ── */
+        :root {
+            --wood-50: #f8f4ed;
+            --wood-100: #efe8dd;
+            --wood-200: #ddd1c0;
+            --wood-300: #c9b8a1;
+            --wood-400: #b49f84;
+            --wood-500: #9f886b;
+            --wood-600: #8a7358;
+            --wood-700: #6f5d47;
+            --wood-800: #55473a;
+            --wood-900: #3b322a;
+            --accent-warm: #c97b4a;
+            --accent-warm-light: #e8d5c4;
+            --accent-forest: #4a7c6b;
+            --accent-forest-light: #c4ddd4;
+            --bg-cream: #faf6f0;
+            --bg-warm: #f5efe8;
+            --text-dark: #2d241e;
+            --text-muted: #6b5f55;
+            --text-light: #8a7a6e;
+        }
+
+        .bg-cream { background-color: var(--bg-cream); }
+        .bg-warm { background-color: var(--bg-warm); }
+        .text-wood { color: var(--wood-700); }
+        .text-wood-light { color: var(--text-light); }
+        .border-wood { border-color: var(--wood-200); }
+
         .hero-bg {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
+            background: linear-gradient(135deg, #faf6f0 0%, #efe8dd 100%);
         }
         .card-hover {
             transition: all 0.2s ease-in-out;
@@ -20,49 +50,68 @@
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
         }
         .btn-primary {
-            background-color: #2563eb;
-            transition: background-color 0.15s;
+            background: linear-gradient(135deg, var(--accent-warm), var(--wood-600));
+            color: #fff;
+            transition: all 0.15s;
         }
         .btn-primary:hover {
-            background-color: #1d4ed8;
+            background: linear-gradient(135deg, var(--wood-600), var(--accent-warm));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201,123,74,0.3);
         }
         .btn-outline {
-            border: 1px solid #2563eb;
-            color: #2563eb;
+            border: 1.5px solid var(--accent-warm);
+            color: var(--accent-warm);
             transition: all 0.15s;
         }
         .btn-outline:hover {
-            background-color: #2563eb;
+            background: var(--accent-warm);
             color: white;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: var(--accent-forest);
+            color: #fff;
+            transition: all 0.15s;
+        }
+        .btn-secondary:hover {
+            background: #3a6b5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74,124,107,0.3);
         }
         .service-icon {
-            background-color: #dbeafe;
-            color: #2563eb;
+            background-color: var(--accent-warm-light);
+            color: var(--accent-warm);
+        }
+        .service-icon-forest {
+            background-color: var(--accent-forest-light);
+            color: var(--accent-forest);
         }
         .footer-bg {
-            background-color: #0b1121;
+            background: var(--wood-900);
         }
         .testimonial-card {
             background: white;
             border-radius: 1.5rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -2px rgba(0,0,0,0.02);
+            border: 1px solid var(--wood-200);
         }
         .floating-btn {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: #2563eb;
+            background: linear-gradient(135deg, var(--accent-warm), var(--wood-600));
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
-            box-shadow: 0 10px 25px -5px rgba(37,99,235,0.4);
+            box-shadow: 0 10px 25px -5px rgba(201,123,74,0.4);
             z-index: 50;
             font-weight: 600;
             transition: all 0.2s;
         }
         .floating-btn:hover {
-            background: #1d4ed8;
-            transform: scale(1.02);
+            transform: scale(1.05);
+            box-shadow: 0 10px 35px rgba(201,123,74,0.5);
         }
         .section-title {
             font-weight: 600;
@@ -72,16 +121,16 @@
             text-wrap: balance;
         }
         /* Two-niche color accents */
-        .dev-accent { color: #2563eb; }
-        .admin-accent { color: #10b981; }
-        .dev-bg { background-color: #dbeafe; }
-        .admin-bg { background-color: #d1fae5; }
-        .dev-border { border-color: #2563eb; }
-        .admin-border { border-color: #10b981; }
-        .dev-tag { background: #dbeafe; color: #2563eb; }
-        .admin-tag { background: #d1fae5; color: #10b981; }
-        .dev-card-border:hover { border-color: #2563eb; }
-        .admin-card-border:hover { border-color: #10b981; }
+        .dev-accent { color: var(--accent-warm); }
+        .admin-accent { color: var(--accent-forest); }
+        .dev-bg { background-color: var(--accent-warm-light); }
+        .admin-bg { background-color: var(--accent-forest-light); }
+        .dev-border { border-color: var(--accent-warm); }
+        .admin-border { border-color: var(--accent-forest); }
+        .dev-tag { background: var(--accent-warm-light); color: var(--accent-warm); }
+        .admin-tag { background: var(--accent-forest-light); color: var(--accent-forest); }
+        .dev-card-border:hover { border-color: var(--accent-warm); }
+        .admin-card-border:hover { border-color: var(--accent-forest); }
         /* Service card separation */
         .service-card::before {
             content: '';
@@ -91,16 +140,16 @@
             border-radius: 10px;
             margin-bottom: 0.75rem;
         }
-        .dev-card::before { background-color: #2563eb; }
-        .admin-card::before { background-color: #10b981; }
+        .dev-card::before { background: var(--accent-warm); }
+        .admin-card::before { background: var(--accent-forest); }
         .service-card ul li::before {
             content: '✦';
             font-weight: 700;
             flex-shrink: 0;
             margin-right: 0.5rem;
         }
-        .dev-card ul li::before { color: #2563eb; }
-        .admin-card ul li::before { color: #10b981; }
+        .dev-card ul li::before { color: var(--accent-warm); }
+        .admin-card ul li::before { color: var(--accent-forest); }
         .service-card ul li {
             display: flex;
             align-items: flex-start;
@@ -113,30 +162,30 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e5e7eb;
+            border-bottom: 2px solid var(--wood-200);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        .dev-col .column-label { color: #2563eb; border-color: #2563eb; }
-        .admin-col .column-label { color: #10b981; border-color: #10b981; }
+        .dev-col .column-label { color: var(--accent-warm); border-color: var(--accent-warm); }
+        .admin-col .column-label { color: var(--accent-forest); border-color: var(--accent-forest); }
         /* Tool badges */
         .tool-badge {
             display: flex;
             align-items: center;
             gap: 0.6rem;
             background: white;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--wood-200);
             border-radius: 12px;
             padding: 0.5rem 1rem;
             font-size: 0.8rem;
             font-weight: 500;
-            color: #4b5563;
+            color: var(--text-muted);
             transition: all 0.2s;
         }
-        .tool-badge:hover { color: #1f2937; }
-        .dev-tool:hover { border-color: #2563eb; }
-        .admin-tool:hover { border-color: #10b981; }
+        .tool-badge:hover { color: var(--text-dark); }
+        .dev-tool:hover { border-color: var(--accent-warm); }
+        .admin-tool:hover { border-color: var(--accent-forest); }
         .tool-icon {
             width: 22px; height: 22px;
             border-radius: 6px;
@@ -155,10 +204,11 @@
             font-weight: 700;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e5e7eb;
+            border-bottom: 2px solid var(--wood-200);
+            color: var(--text-muted);
         }
-        .dev-col .tools-cat-label { color: #2563eb; border-color: #2563eb; }
-        .admin-col .tools-cat-label { color: #10b981; border-color: #10b981; }
+        .dev-col .tools-cat-label { color: var(--accent-warm); border-color: var(--accent-warm); }
+        .admin-col .tools-cat-label { color: var(--accent-forest); border-color: var(--accent-forest); }
         .tools-grid-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -176,15 +226,15 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
-        .trait-dot.dev { background: #2563eb; }
-        .trait-dot.admin { background: #10b981; }
+        .trait-dot.dev { background: var(--accent-warm); }
+        .trait-dot.admin { background: var(--accent-forest); }
         .trait {
             display: flex;
             align-items: center;
             gap: 0.6rem;
             font-size: 0.9rem;
             font-weight: 500;
-            color: #4b5563;
+            color: var(--text-muted);
         }
         .traits {
             display: grid;
@@ -200,46 +250,49 @@
         }
         .about-card {
             background: white;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--wood-200);
             border-radius: 20px;
             padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.03);
         }
         .about-card .usp {
             border-radius: 12px;
             padding: 1.25rem;
             margin-top: 1.5rem;
-            background: #f0f9ff;
-            border: 1px solid #dbeafe;
+            background: var(--accent-warm-light);
+            border: 1px solid rgba(201,123,74,0.15);
         }
+        .about-card .usp p { color: var(--wood-700); }
         /* Skills expanding */
         .skills-expanding {
             background: white;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--wood-200);
             border-radius: 20px;
             padding: 2.5rem;
             margin-top: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.03);
         }
         .pill {
             padding: 0.4rem 1.2rem;
             border-radius: 9999px;
             font-size: 0.8rem;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--wood-200);
             transition: all 0.2s;
         }
         .pill.dev-pill {
-            background: #dbeafe;
-            color: #2563eb;
-            border-color: #bfdbfe;
+            background: var(--accent-warm-light);
+            color: var(--accent-warm);
+            border-color: rgba(201,123,74,0.2);
         }
         .pill.admin-pill {
-            background: #d1fae5;
-            color: #10b981;
-            border-color: #a7f3d0;
+            background: var(--accent-forest-light);
+            color: var(--accent-forest);
+            border-color: rgba(74,124,107,0.2);
         }
         .pill:hover { transform: translateY(-2px); }
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
+            .hero-grid {
                 grid-template-columns: 1fr !important;
                 padding: 100px 5% 60px !important;
                 gap: 2.5rem !important;
@@ -288,10 +341,10 @@
             width: 380px;
             height: 480px;
             border-radius: 40% 40% 20% 20% / 50% 50% 20% 20%;
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-            border: 2px solid #2563eb20;
+            background: linear-gradient(135deg, var(--accent-warm-light), var(--wood-200));
+            border: 2px solid rgba(201,123,74,0.15);
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
         }
         .photo-frame img {
             width: 100%;
@@ -306,15 +359,15 @@
             gap: 1rem;
             text-decoration: none;
             background: white;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--wood-200);
             border-radius: 14px;
             padding: 1rem 1.25rem;
             transition: all 0.2s;
-            color: #1f2937;
+            color: var(--text-dark);
         }
         .contact-method:hover { transform: translateX(6px); }
-        .contact-method.dev-method:hover { border-color: #2563eb; }
-        .contact-method.admin-method:hover { border-color: #10b981; }
+        .contact-method.dev-method:hover { border-color: var(--accent-warm); }
+        .contact-method.admin-method:hover { border-color: var(--accent-forest); }
         .contact-icon {
             width: 42px; height: 42px;
             border-radius: 12px;
@@ -323,11 +376,43 @@
             justify-content: center;
             font-size: 1.1rem;
             flex-shrink: 0;
-            background: #f9fafb;
+            background: var(--bg-cream);
+        }
+        .service-card {
+            background: white;
+            border: 1px solid var(--wood-200);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+        .portfolio-card {
+            background: white;
+            border: 1px solid var(--wood-200);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+            border-color: var(--accent-warm);
+        }
+        input, textarea, select {
+            background-color: var(--bg-cream) !important;
+            border-color: var(--wood-200) !important;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--accent-warm) !important;
+            box-shadow: 0 0 0 3px rgba(201,123,74,0.1) !important;
         }
     </style>
 </head>
-<body class="bg-[#F8FAFC] text-[#1F2937] antialiased">
+<body class="bg-cream text-[#2d241e] antialiased">
 
     <!-- Floating Hire Me Button -->
     <a href="#contact" class="floating-btn hidden md:flex items-center gap-2 shadow-lg">
@@ -339,23 +424,23 @@
     </a>
 
     <!-- Navigation -->
-    <nav class="bg-white/80 backdrop-blur-sm border-b border-gray-100/80 sticky top-0 z-40">
+    <nav class="bg-white/90 backdrop-blur-sm border-b border-wood sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
             <div class="flex items-center gap-2">
-                <span class="text-2xl font-bold text-[#2563EB]">P<span class="text-[#10B981]">D</span>F</span>
-                <span class="hidden sm:inline-block text-sm font-medium text-gray-500 ml-1">Dev & VA</span>
+                <span class="text-2xl font-bold text-[#c97b4a]">P<span class="text-[#4a7c6b]">D</span>F</span>
+                <span class="hidden sm:inline-block text-sm font-medium text-[#6b5f55] ml-1">Dev & VA</span>
             </div>
-            <div class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-700">
-                <a href="#home" class="hover:text-[#2563EB] transition">Home</a>
-                <a href="#about" class="hover:text-[#2563EB] transition">About</a>
-                <a href="#services" class="hover:text-[#2563EB] transition">Services</a>
-                <a href="#tools" class="hover:text-[#2563EB] transition">Tools</a>
-                <a href="#portfolio" class="hover:text-[#2563EB] transition">Portfolio</a>
-                <a href="#contact" class="hover:text-[#2563EB] transition">Contact</a>
+            <div class="hidden md:flex items-center gap-7 text-sm font-medium text-[#6b5f55]">
+                <a href="#home" class="hover:text-[#c97b4a] transition">Home</a>
+                <a href="#about" class="hover:text-[#c97b4a] transition">About</a>
+                <a href="#services" class="hover:text-[#c97b4a] transition">Services</a>
+                <a href="#tools" class="hover:text-[#c97b4a] transition">Tools</a>
+                <a href="#portfolio" class="hover:text-[#c97b4a] transition">Portfolio</a>
+                <a href="#contact" class="hover:text-[#c97b4a] transition">Contact</a>
             </div>
             <div class="flex items-center gap-3">
-                <a href="#contact" class="hidden sm:inline-block bg-[#2563EB] text-white px-5 py-2 rounded-full text-sm font-semibold shadow-sm hover:bg-[#1d4ed8] transition">Hire Me</a>
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-full hover:bg-gray-100 transition">
+                <a href="#contact" class="hidden sm:inline-block btn-primary text-white px-5 py-2 rounded-full text-sm font-semibold shadow-sm">Hire Me</a>
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-full hover:bg-[#f5efe8] transition">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -364,14 +449,14 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden bg-white border-b border-gray-100 px-6 pb-4 hidden flex-col gap-3 text-sm font-medium text-gray-700">
-            <a href="#home" class="hover:text-[#2563EB]">Home</a>
-            <a href="#about" class="hover:text-[#2563EB]">About</a>
-            <a href="#services" class="hover:text-[#2563EB]">Services</a>
-            <a href="#tools" class="hover:text-[#2563EB]">Tools</a>
-            <a href="#portfolio" class="hover:text-[#2563EB]">Portfolio</a>
-            <a href="#contact" class="hover:text-[#2563EB]">Contact</a>
-            <a href="#contact" class="mt-2 bg-[#2563EB] text-white px-4 py-2 rounded-full text-center">Hire Me</a>
+        <div id="mobile-menu" class="md:hidden bg-white border-b border-wood px-6 pb-4 hidden flex-col gap-3 text-sm font-medium text-[#6b5f55]">
+            <a href="#home" class="hover:text-[#c97b4a]">Home</a>
+            <a href="#about" class="hover:text-[#c97b4a]">About</a>
+            <a href="#services" class="hover:text-[#c97b4a]">Services</a>
+            <a href="#tools" class="hover:text-[#c97b4a]">Tools</a>
+            <a href="#portfolio" class="hover:text-[#c97b4a]">Portfolio</a>
+            <a href="#contact" class="hover:text-[#c97b4a]">Contact</a>
+            <a href="#contact" class="mt-2 btn-primary text-white px-4 py-2 rounded-full text-center">Hire Me</a>
         </div>
     </nav>
 
@@ -379,29 +464,29 @@
     <section id="home" class="hero-bg">
         <div class="hero-grid">
             <div>
-                <span class="inline-block bg-[#dbeafe] text-[#2563EB] text-xs font-semibold px-4 py-1.5 rounded-full mb-4">✦ Available Worldwide · Remote</span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-balance">
+                <span class="inline-block bg-[#e8d5c4] text-[#c97b4a] text-xs font-semibold px-4 py-1.5 rounded-full mb-4">✦ Available Worldwide · Remote</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] text-balance text-[#2d241e]">
                     Your Reliable<br>
-                    <span class="text-[#2563EB]">Virtual Assistant</span><br>
-                    <span class="text-[#10B981]">for Everything</span>
+                    <span class="text-[#c97b4a]">Virtual Assistant</span><br>
+                    <span class="text-[#4a7c6b]">for Everything</span>
                 </h1>
-                <p class="text-gray-600 text-lg mt-4 max-w-lg leading-relaxed">
-                    <span class="text-[#2563EB] font-semibold">Web Developer</span> · 
-                    <span class="text-[#10B981] font-semibold">System Tester</span> · 
-                    <span class="text-[#2563EB] font-semibold">UI Designer</span> · 
-                    <span class="text-[#10B981] font-semibold">Admin Generalist</span>
+                <p class="text-[#6b5f55] text-lg mt-4 max-w-lg leading-relaxed">
+                    <span class="text-[#c97b4a] font-semibold">Web Developer</span> · 
+                    <span class="text-[#4a7c6b] font-semibold">System Tester</span> · 
+                    <span class="text-[#c97b4a] font-semibold">UI Designer</span> · 
+                    <span class="text-[#4a7c6b] font-semibold">Admin Generalist</span>
                 </p>
-                <p class="text-gray-500 mt-2 max-w-lg">
+                <p class="text-[#8a7a6e] mt-2 max-w-lg">
                     I solve problems, build systems, and deliver quality work across both development and administration.
                 </p>
                 <div class="flex flex-wrap items-center gap-4 mt-8">
-                    <a href="#contact" class="btn-primary text-white px-8 py-3.5 rounded-full text-sm font-semibold shadow-lg shadow-blue-200/60">Hire Me Now</a>
+                    <a href="#contact" class="btn-primary text-white px-8 py-3.5 rounded-full text-sm font-semibold shadow-lg shadow-[#c97b4a]/20">Hire Me Now</a>
                     <a href="#services" class="btn-outline px-8 py-3.5 rounded-full text-sm font-semibold">View Services</a>
                 </div>
-                <div class="flex items-center gap-6 mt-8 text-sm text-gray-500">
-                    <span class="flex items-center gap-1"><span class="text-[#10B981] text-lg">✓</span> 1+ Years Exp.</span>
-                    <span class="flex items-center gap-1"><span class="text-[#10B981] text-lg">✓</span> 5+ Projects</span>
-                    <span class="flex items-center gap-1"><span class="text-[#10B981] text-lg">✓</span> 100% Remote</span>
+                <div class="flex items-center gap-6 mt-8 text-sm text-[#6b5f55]">
+                    <span class="flex items-center gap-1"><span class="text-[#4a7c6b] text-lg">✓</span> 1+ Years Exp.</span>
+                    <span class="flex items-center gap-1"><span class="text-[#4a7c6b] text-lg">✓</span> 5+ Projects</span>
+                    <span class="flex items-center gap-1"><span class="text-[#4a7c6b] text-lg">✓</span> 100% Remote</span>
                 </div>
             </div>
             <div class="relative flex justify-center">
@@ -416,13 +501,13 @@
     <section id="about" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-14">
-                <h2 class="section-title text-3xl md:text-4xl">The Multi-Skilled Professional <span class="text-[#2563EB]">Who Delivers</span></h2>
-                <p class="text-gray-500 max-w-2xl mx-auto mt-2">I don't limit myself to one role. I bring the same dedication to every task.</p>
+                <h2 class="section-title text-3xl md:text-4xl text-[#2d241e]">The Multi-Skilled Professional <span class="text-[#c97b4a]">Who Delivers</span></h2>
+                <p class="text-[#6b5f55] max-w-2xl mx-auto mt-2">I don't limit myself to one role. I bring the same dedication to every task.</p>
             </div>
             <div class="about-grid">
                 <div>
-                    <p class="text-gray-600 mb-4">Hi, I'm <strong>Paul David S. Ferrer</strong> — a versatile IT professional based in the Philippines. Whether it's <strong class="text-[#2563EB]">web development</strong>, <strong class="text-[#10B981]">system testing</strong>, <strong class="text-[#2563EB]">UI design</strong>, or <strong class="text-[#10B981]">general administration</strong>, I bring quality to every task.</p>
-                    <p class="text-gray-600">I led the development of <strong>Corpora-Online</strong> as Team Leader and completed a 486-hour practicum as a System Developer. I've built real-time chat systems, appointment schedulers, grading systems, and defense management tools.</p>
+                    <p class="text-[#6b5f55] mb-4">Hi, I'm <strong class="text-[#2d241e]">Paul David S. Ferrer</strong> — a versatile IT professional based in the Philippines. Whether it's <strong class="text-[#c97b4a]">web development</strong>, <strong class="text-[#4a7c6b]">system testing</strong>, <strong class="text-[#c97b4a]">UI design</strong>, or <strong class="text-[#4a7c6b]">general administration</strong>, I bring quality to every task.</p>
+                    <p class="text-[#6b5f55]">I led the development of <strong class="text-[#2d241e]">Corpora-Online</strong> as Team Leader and completed a 486-hour practicum as a System Developer. I've built real-time chat systems, appointment schedulers, grading systems, and defense management tools.</p>
                     <div class="traits">
                         <div class="trait"><div class="trait-dot dev"></div>Full-Stack Laravel</div>
                         <div class="trait"><div class="trait-dot admin"></div>System Testing</div>
@@ -434,10 +519,10 @@
                 </div>
                 <div>
                     <div class="about-card">
-                        <h3 class="text-xl font-bold mb-4">Why Work <span class="text-[#2563EB]">With</span> <span class="text-[#10B981]">Me</span></h3>
-                        <p class="text-gray-600">I don't just complete tasks — I anticipate what you need next. I'm comfortable wearing multiple hats and thrive in fast-paced environments. Whether you need code written, systems tested, designs polished, or operations streamlined, I'm ready to step in and deliver.</p>
+                        <h3 class="text-xl font-bold mb-4 text-[#2d241e]">Why Work <span class="text-[#c97b4a]">With</span> <span class="text-[#4a7c6b]">Me</span></h3>
+                        <p class="text-[#6b5f55]">I don't just complete tasks — I anticipate what you need next. I'm comfortable wearing multiple hats and thrive in fast-paced environments. Whether you need code written, systems tested, designs polished, or operations streamlined, I'm ready to step in and deliver.</p>
                         <div class="usp">
-                            <p class="font-medium text-[#2563EB]">💡 "I'm not looking for a job title. I'm looking for problems to solve and systems to improve. That's where I shine."</p>
+                            <p class="font-medium text-[#c97b4a]">💡 "I'm not looking for a job title. I'm looking for problems to solve and systems to improve. That's where I shine."</p>
                         </div>
                     </div>
                 </div>
@@ -446,41 +531,41 @@
     </section>
 
     <!-- Services Section with Two Niches -->
-    <section id="services" class="py-16 bg-[#F8FAFC]">
+    <section id="services" class="py-16 bg-warm">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="section-title text-3xl md:text-4xl">Two Niches — <span class="text-[#2563EB]">One</span> <span class="text-[#10B981]">Professional</span></h2>
-                <p class="text-gray-500 mt-2">Choose the expertise you need. I'm equally comfortable in both worlds.</p>
+                <h2 class="section-title text-3xl md:text-4xl text-[#2d241e]">Two Niches — <span class="text-[#c97b4a]">One</span> <span class="text-[#4a7c6b]">Professional</span></h2>
+                <p class="text-[#6b5f55] mt-2">Choose the expertise you need. I'm equally comfortable in both worlds.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Development Column -->
                 <div class="dev-col">
                     <div class="column-label">💻 Development &amp; Design</div>
                     <div class="space-y-4">
-                        <div class="service-card dev-card bg-white p-6 rounded-2xl border border-gray-100 card-hover dev-card-border">
-                            <div class="service-icon w-12 h-12 rounded-full bg-[#dbeafe] text-[#2563EB] flex items-center justify-center text-2xl mb-3">⚡</div>
-                            <h3 class="font-bold text-lg">Web Development</h3>
-                            <ul class="text-sm text-gray-600 mt-2">
+                        <div class="service-card dev-card dev-card-border">
+                            <div class="service-icon w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-3">⚡</div>
+                            <h3 class="font-bold text-lg text-[#2d241e]">Web Development</h3>
+                            <ul class="text-sm text-[#6b5f55] mt-2">
                                 <li>Laravel &amp; PHP full-stack development</li>
                                 <li>Custom web applications &amp; APIs</li>
                                 <li>Real-time features (chat, notifications)</li>
                                 <li>Database design &amp; optimization</li>
                             </ul>
                         </div>
-                        <div class="service-card dev-card bg-white p-6 rounded-2xl border border-gray-100 card-hover dev-card-border">
-                            <div class="service-icon w-12 h-12 rounded-full bg-[#dbeafe] text-[#2563EB] flex items-center justify-center text-2xl mb-3">🧪</div>
-                            <h3 class="font-bold text-lg">System Testing &amp; QA</h3>
-                            <ul class="text-sm text-gray-600 mt-2">
+                        <div class="service-card dev-card dev-card-border">
+                            <div class="service-icon w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-3">🧪</div>
+                            <h3 class="font-bold text-lg text-[#2d241e]">System Testing &amp; QA</h3>
+                            <ul class="text-sm text-[#6b5f55] mt-2">
                                 <li>Manual testing &amp; bug reporting</li>
                                 <li>User acceptance testing</li>
                                 <li>Cross-browser &amp; device testing</li>
                                 <li>Performance &amp; security checks</li>
                             </ul>
                         </div>
-                        <div class="service-card dev-card bg-white p-6 rounded-2xl border border-gray-100 card-hover dev-card-border">
-                            <div class="service-icon w-12 h-12 rounded-full bg-[#dbeafe] text-[#2563EB] flex items-center justify-center text-2xl mb-3">🎨</div>
-                            <h3 class="font-bold text-lg">UI/UX Design</h3>
-                            <ul class="text-sm text-gray-600 mt-2">
+                        <div class="service-card dev-card dev-card-border">
+                            <div class="service-icon w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-3">🎨</div>
+                            <h3 class="font-bold text-lg text-[#2d241e]">UI/UX Design</h3>
+                            <ul class="text-sm text-[#6b5f55] mt-2">
                                 <li>Figma prototypes &amp; wireframes</li>
                                 <li>Modern, clean UI design</li>
                                 <li>Design systems &amp; components</li>
@@ -493,30 +578,30 @@
                 <div class="admin-col">
                     <div class="column-label">📋 Virtual Assistant Services</div>
                     <div class="space-y-4">
-                        <div class="service-card admin-card bg-white p-6 rounded-2xl border border-gray-100 card-hover admin-card-border">
-                            <div class="service-icon w-12 h-12 rounded-full bg-[#d1fae5] text-[#10B981] flex items-center justify-center text-2xl mb-3">📋</div>
-                            <h3 class="font-bold text-lg">Admin &amp; Operations Support</h3>
-                            <ul class="text-sm text-gray-600 mt-2">
+                        <div class="service-card admin-card admin-card-border">
+                            <div class="service-icon-forest w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-3">📋</div>
+                            <h3 class="font-bold text-lg text-[#2d241e]">Admin &amp; Operations Support</h3>
+                            <ul class="text-sm text-[#6b5f55] mt-2">
                                 <li>General administration &amp; coordination</li>
                                 <li>Document management &amp; data entry</li>
                                 <li>Process documentation &amp; SOP creation</li>
                                 <li>Task &amp; project coordination</li>
                             </ul>
                         </div>
-                        <div class="service-card admin-card bg-white p-6 rounded-2xl border border-gray-100 card-hover admin-card-border">
-                            <div class="service-icon w-12 h-12 rounded-full bg-[#d1fae5] text-[#10B981] flex items-center justify-center text-2xl mb-3">👔</div>
-                            <h3 class="font-bold text-lg">Executive Assistant</h3>
-                            <ul class="text-sm text-gray-600 mt-2">
+                        <div class="service-card admin-card admin-card-border">
+                            <div class="service-icon-forest w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-3">👔</div>
+                            <h3 class="font-bold text-lg text-[#2d241e]">Executive Assistant</h3>
+                            <ul class="text-sm text-[#6b5f55] mt-2">
                                 <li>Calendar &amp; email management</li>
                                 <li>Meeting coordination &amp; note-taking</li>
                                 <li>Travel arrangements &amp; expense tracking</li>
                                 <li>Executive-level communication support</li>
                             </ul>
                         </div>
-                        <div class="service-card admin-card bg-white p-6 rounded-2xl border border-gray-100 card-hover admin-card-border">
-                            <div class="service-icon w-12 h-12 rounded-full bg-[#d1fae5] text-[#10B981] flex items-center justify-center text-2xl mb-3">📊</div>
-                            <h3 class="font-bold text-lg">Data &amp; Document Management</h3>
-                            <ul class="text-sm text-gray-600 mt-2">
+                        <div class="service-card admin-card admin-card-border">
+                            <div class="service-icon-forest w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-3">📊</div>
+                            <h3 class="font-bold text-lg text-[#2d241e]">Data &amp; Document Management</h3>
+                            <ul class="text-sm text-[#6b5f55] mt-2">
                                 <li>Data entry &amp; spreadsheet management</li>
                                 <li>File organization &amp; digital filing</li>
                                 <li>Document formatting &amp; processing</li>
@@ -529,8 +614,8 @@
 
             <!-- Expanding Skills -->
             <div class="skills-expanding mt-8">
-                <h3 class="text-xl font-bold mb-2">🌱 Currently Expanding — Always Learning</h3>
-                <p class="text-gray-500 text-sm mb-4">I believe in growing with my clients. These are skills I'm actively developing to serve you even better:</p>
+                <h3 class="text-xl font-bold mb-2 text-[#2d241e]">🌱 Currently Expanding — Always Learning</h3>
+                <p class="text-[#6b5f55] text-sm mb-4">I believe in growing with my clients. These are skills I'm actively developing to serve you even better:</p>
                 <div class="flex flex-wrap gap-2">
                     <span class="pill dev-pill">React.js</span>
                     <span class="pill dev-pill">Flutter</span>
@@ -547,8 +632,8 @@
     <section id="tools" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="section-title text-3xl md:text-4xl">I Already Know <span class="text-[#2563EB]">The Tools</span> <span class="text-[#10B981]">You Use</span></h2>
-                <p class="text-gray-500 mt-2">No onboarding headaches. I'm ready to work with your stack from day one.</p>
+                <h2 class="section-title text-3xl md:text-4xl text-[#2d241e]">I Already Know <span class="text-[#c97b4a]">The Tools</span> <span class="text-[#4a7c6b]">You Use</span></h2>
+                <p class="text-[#6b5f55] mt-2">No onboarding headaches. I'm ready to work with your stack from day one.</p>
             </div>
             <div class="tools-grid-wrapper">
                 <!-- Dev Tools -->
@@ -597,47 +682,47 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 bg-[#F8FAFC]">
+    <section id="portfolio" class="py-16 bg-warm">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="section-title text-3xl md:text-4xl">See What <span class="text-[#2563EB]">I've</span> <span class="text-[#10B981]">Built</span></h2>
-                <p class="text-gray-500 mt-2">Real projects — from development to design.</p>
+                <h2 class="section-title text-3xl md:text-4xl text-[#2d241e]">See What <span class="text-[#c97b4a]">I've</span> <span class="text-[#4a7c6b]">Built</span></h2>
+                <p class="text-[#6b5f55] mt-2">Real projects — from development to design.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="https://corpora-online.site/" target="_blank" class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+                <a href="https://corpora-online.site/" target="_blank" class="portfolio-card">
                     <div class="text-4xl mb-3">📚</div>
-                    <h4 class="font-bold">Corpora-Online</h4>
-                    <p class="text-sm text-gray-500 mt-1">Thesis repository system with real-time chat, appointment scheduling, grading, and defense comments.</p>
+                    <h4 class="font-bold text-[#2d241e]">Corpora-Online</h4>
+                    <p class="text-sm text-[#6b5f55] mt-1">Thesis repository system with real-time chat, appointment scheduling, grading, and defense comments.</p>
                     <span class="inline-block mt-3 text-xs font-semibold px-3 py-1 rounded-full dev-tag">Live Site →</span>
                 </a>
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+                <div class="portfolio-card">
                     <div class="text-4xl mb-3">💬</div>
-                    <h4 class="font-bold">Real-time Chat System</h4>
-                    <p class="text-sm text-gray-500 mt-1">Integrated chat for seamless communication between students, faculty, and administrators.</p>
+                    <h4 class="font-bold text-[#2d241e]">Real-time Chat System</h4>
+                    <p class="text-sm text-[#6b5f55] mt-1">Integrated chat for seamless communication between students, faculty, and administrators.</p>
                     <span class="inline-block mt-3 text-xs font-semibold px-3 py-1 rounded-full dev-tag">Laravel · WebSocket</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+                <div class="portfolio-card">
                     <div class="text-4xl mb-3">📅</div>
-                    <h4 class="font-bold">Appointment & Feedback System</h4>
-                    <p class="text-sm text-gray-500 mt-1">Faculty scheduling with automated management and post-meeting feedback collection.</p>
+                    <h4 class="font-bold text-[#2d241e]">Appointment & Feedback System</h4>
+                    <p class="text-sm text-[#6b5f55] mt-1">Faculty scheduling with automated management and post-meeting feedback collection.</p>
                     <span class="inline-block mt-3 text-xs font-semibold px-3 py-1 rounded-full dev-tag">Laravel · MySQL</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+                <div class="portfolio-card">
                     <div class="text-4xl mb-3">📊</div>
-                    <h4 class="font-bold">Grading System</h4>
-                    <p class="text-sm text-gray-500 mt-1">Comprehensive grade management with real-time calculations and automated reports.</p>
+                    <h4 class="font-bold text-[#2d241e]">Grading System</h4>
+                    <p class="text-sm text-[#6b5f55] mt-1">Comprehensive grade management with real-time calculations and automated reports.</p>
                     <span class="inline-block mt-3 text-xs font-semibold px-3 py-1 rounded-full dev-tag">Laravel · JavaScript</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+                <div class="portfolio-card">
                     <div class="text-4xl mb-3">📝</div>
-                    <h4 class="font-bold">Defense Comments System</h4>
-                    <p class="text-sm text-gray-500 mt-1">R3Comments for thesis defense management with structured feedback and evaluations.</p>
+                    <h4 class="font-bold text-[#2d241e]">Defense Comments System</h4>
+                    <p class="text-sm text-[#6b5f55] mt-1">R3Comments for thesis defense management with structured feedback and evaluations.</p>
                     <span class="inline-block mt-3 text-xs font-semibold px-3 py-1 rounded-full dev-tag">Laravel · AJAX</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover">
+                <div class="portfolio-card">
                     <div class="text-4xl mb-3">🎨</div>
-                    <h4 class="font-bold">UI Design (Figma)</h4>
-                    <p class="text-sm text-gray-500 mt-1">Modern, user-friendly UI/UX designs for web and mobile applications.</p>
+                    <h4 class="font-bold text-[#2d241e]">UI Design (Figma)</h4>
+                    <p class="text-sm text-[#6b5f55] mt-1">Modern, user-friendly UI/UX designs for web and mobile applications.</p>
                     <span class="inline-block mt-3 text-xs font-semibold px-3 py-1 rounded-full dev-tag">Figma · Prototyping</span>
                 </div>
             </div>
@@ -649,39 +734,39 @@
         <div class="max-w-6xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Contact Info -->
             <div>
-                <h2 class="section-title text-3xl">Get in <span class="text-[#2563EB]">Touch</span></h2>
-                <p class="text-gray-500 text-sm mt-1 mb-6">Whether you need a developer, a tester, a designer, or someone to keep things running smoothly — I'm ready.</p>
+                <h2 class="section-title text-3xl text-[#2d241e]">Get in <span class="text-[#c97b4a]">Touch</span></h2>
+                <p class="text-[#6b5f55] text-sm mt-1 mb-6">Whether you need a developer, a tester, a designer, or someone to keep things running smoothly — I'm ready.</p>
                 <div class="space-y-3">
                     <a href="mailto:pauldavidferrer7@gmail.com" class="contact-method dev-method">
                         <div class="contact-icon">📧</div>
-                        <div><span class="text-xs text-gray-400">Email</span><br><strong>pauldavidferrer7@gmail.com</strong></div>
+                        <div><span class="text-xs text-[#8a7a6e]">Email</span><br><strong class="text-[#2d241e]">pauldavidferrer7@gmail.com</strong></div>
                     </a>
                     <a href="https://wa.me/639078084749" target="_blank" class="contact-method dev-method">
                         <div class="contact-icon">💬</div>
-                        <div><span class="text-xs text-gray-400">WhatsApp</span><br><strong>+63 907 8084 749</strong></div>
+                        <div><span class="text-xs text-[#8a7a6e]">WhatsApp</span><br><strong class="text-[#2d241e]">+63 907 8084 749</strong></div>
                     </a>
                     <a href="https://www.linkedin.com/in/ferrer-paul-david-4a1b71410" target="_blank" class="contact-method admin-method">
                         <div class="contact-icon">💼</div>
-                        <div><span class="text-xs text-gray-400">LinkedIn</span><br><strong>Paul David Ferrer</strong></div>
+                        <div><span class="text-xs text-[#8a7a6e]">LinkedIn</span><br><strong class="text-[#2d241e]">Paul David Ferrer</strong></div>
                     </a>
                     <a href="https://calendly.com/pauldavidferrer/30min" target="_blank" class="contact-method dev-method">
                         <div class="contact-icon">📅</div>
-                        <div><span class="text-xs text-gray-400">Schedule</span><br><strong>Free 30-min Call</strong></div>
+                        <div><span class="text-xs text-[#8a7a6e]">Schedule</span><br><strong class="text-[#2d241e]">Free 30-min Call</strong></div>
                     </a>
                 </div>
             </div>
             <!-- Contact Form -->
             <div>
-                <h2 class="section-title text-3xl">Send Me a <span class="text-[#2563EB]">Message</span></h2>
-                <p class="text-gray-500 text-sm mt-1 mb-6">I typically respond within a few hours during business days.</p>
+                <h2 class="section-title text-3xl text-[#2d241e]">Send Me a <span class="text-[#c97b4a]">Message</span></h2>
+                <p class="text-[#6b5f55] text-sm mt-1 mb-6">I typically respond within a few hours during business days.</p>
                 <form class="space-y-4" action="https://formspree.io/f/xdabnony" method="POST">
-                    <div><input type="text" name="name" placeholder="Full Name" class="w-full bg-[#F8FAFC] border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30" required></div>
+                    <div><input type="text" name="name" placeholder="Full Name" class="w-full bg-cream border border-wood rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#c97b4a]/30 text-[#2d241e]" required></div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <input type="email" name="email" placeholder="Email" class="bg-[#F8FAFC] border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30" required>
-                        <input type="text" name="service" placeholder="Service Needed" class="bg-[#F8FAFC] border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30">
+                        <input type="email" name="email" placeholder="Email" class="w-full bg-cream border border-wood rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#c97b4a]/30 text-[#2d241e]" required>
+                        <input type="text" name="service" placeholder="Service Needed" class="w-full bg-cream border border-wood rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#c97b4a]/30 text-[#2d241e]">
                     </div>
-                    <textarea rows="4" name="message" placeholder="Tell me about your needs..." class="w-full bg-[#F8FAFC] border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30" required></textarea>
-                    <button type="submit" class="btn-primary w-full text-white py-3.5 rounded-xl text-sm font-semibold shadow-md shadow-blue-200/50">Send Message →</button>
+                    <textarea rows="4" name="message" placeholder="Tell me about your needs..." class="w-full bg-cream border border-wood rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#c97b4a]/30 text-[#2d241e]" required></textarea>
+                    <button type="submit" class="btn-primary w-full text-white py-3.5 rounded-xl text-sm font-semibold shadow-md shadow-[#c97b4a]/20">Send Message →</button>
                 </form>
             </div>
         </div>
@@ -691,7 +776,7 @@
     <footer class="footer-bg text-gray-300 py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-                <span class="text-2xl font-bold text-white">P<span class="text-[#10B981]">D</span>F</span>
+                <span class="text-2xl font-bold text-white">P<span class="text-[#4a7c6b]">D</span>F</span>
                 <p class="text-xs text-gray-400 mt-2">Dev &amp; VA · One Professional, Two Niches</p>
             </div>
             <div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paul David S. Ferrer · Dev & Design</title>
+    <title>Paul David S. Ferrer · Dev & Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
         /* ── ROOT ── */
@@ -14,16 +14,16 @@
             --bg-body: #f5f3f0;
             --bg-card: #ffffff;
             --bg-alt: #edeae6;
-            --surface: #faf8f5;
             --border-subtle: rgba(0,0,0,0.06);
             --text-primary: #1a1a1e;
             --text-secondary: #4a4a4f;
             --text-muted: #8a8a90;
-            --accent-1: #c97b63;
-            --accent-2: #d4a08c;
-            --accent-3: #e8c4b5;
-            --gradient-main: linear-gradient(135deg, #c97b63, #d4a08c);
-            --gradient-glow: linear-gradient(135deg, rgba(201,123,99,0.08), rgba(212,160,140,0.05));
+            --accent-dev: #c97b63;
+            --accent-admin: #6b8c7c;
+            --accent-dev-light: rgba(201,123,99,0.08);
+            --accent-admin-light: rgba(107,140,124,0.08);
+            --gradient-dev: linear-gradient(135deg, #c97b63, #d4a08c);
+            --gradient-admin: linear-gradient(135deg, #6b8c7c, #8aaa9a);
             --radius-card: 20px;
             --radius-pill: 50px;
             --shadow-card: 0 8px 32px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.02);
@@ -38,10 +38,9 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ── SCROLLBAR ── */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-dev); border-radius: 10px; }
 
         /* ── NAV ── */
         nav {
@@ -64,9 +63,8 @@
             color: var(--text-primary);
             text-decoration: none;
         }
-        .nav-logo span {
-            color: var(--accent-1);
-        }
+        .nav-logo span.dev { color: var(--accent-dev); }
+        .nav-logo span.admin { color: var(--accent-admin); }
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -87,13 +85,13 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient-main);
+            background: var(--gradient-dev);
             transition: var(--transition);
         }
         .nav-links a:hover { color: var(--text-primary); }
         .nav-links a:hover::after { width: 100%; }
         .nav-cta {
-            background: var(--gradient-main);
+            background: var(--gradient-dev);
             color: #fff;
             padding: 0.5rem 1.5rem;
             border-radius: var(--radius-pill);
@@ -107,7 +105,7 @@
 
         /* ── BUTTONS ── */
         .btn-primary {
-            background: var(--gradient-main);
+            background: var(--gradient-dev);
             color: #fff;
             padding: 0.9rem 2.2rem;
             border-radius: var(--radius-pill);
@@ -133,7 +131,7 @@
             display: inline-block;
             border: 1px solid rgba(0,0,0,0.08);
         }
-        .btn-outline:hover { background: rgba(0,0,0,0.02); border-color: var(--accent-1); transform: translateY(-3px); }
+        .btn-outline:hover { background: rgba(0,0,0,0.02); border-color: var(--accent-dev); transform: translateY(-3px); }
 
         /* ── HERO ── */
         .hero {
@@ -150,7 +148,7 @@
             display: inline-block;
             background: rgba(201,123,99,0.08);
             border: 1px solid rgba(201,123,99,0.10);
-            color: var(--accent-1);
+            color: var(--accent-dev);
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.1em;
@@ -167,9 +165,8 @@
             margin-bottom: 1.25rem;
             color: var(--text-primary);
         }
-        .hero h1 span {
-            color: var(--accent-1);
-        }
+        .hero h1 .dev-color { color: var(--accent-dev); }
+        .hero h1 .admin-color { color: var(--accent-admin); }
         .hero-tagline {
             font-size: 1.1rem;
             color: var(--text-secondary);
@@ -182,7 +179,7 @@
         .trust-num {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--accent-1);
+            color: var(--accent-dev);
         }
         .trust-label {
             font-size: 0.7rem;
@@ -197,10 +194,10 @@
             width: 380px;
             height: 480px;
             border-radius: 40% 40% 20% 20% / 50% 50% 20% 20%;
-            background: var(--gradient-glow);
+            background: linear-gradient(135deg, rgba(201,123,99,0.06), rgba(107,140,124,0.06));
             border: 2px solid rgba(201,123,99,0.10);
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.04), inset 0 0 80px rgba(201,123,99,0.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.04);
         }
         .photo-frame img {
             width: 100%;
@@ -222,7 +219,7 @@
             bottom: 10px; left: -40px;
             width: 80px; height: 80px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212,160,140,0.04), transparent 70%);
+            background: radial-gradient(circle, rgba(107,140,124,0.04), transparent 70%);
             z-index: -1;
         }
 
@@ -234,9 +231,10 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.12em;
-            color: var(--accent-1);
+            color: var(--accent-dev);
             margin-bottom: 0.75rem;
         }
+        .section-tag.admin-tag { color: var(--accent-admin); }
         .section-title {
             font-size: clamp(2rem, 3.2vw, 2.8rem);
             font-weight: 700;
@@ -244,9 +242,8 @@
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
-        .section-title .highlight {
-            color: var(--accent-1);
-        }
+        .section-title .dev-highlight { color: var(--accent-dev); }
+        .section-title .admin-highlight { color: var(--accent-admin); }
         .section-sub {
             color: var(--text-secondary);
             max-width: 560px;
@@ -283,11 +280,12 @@
             font-weight: 500;
             color: var(--text-secondary);
         }
+        .trait-dot.dev { background: var(--accent-dev); }
+        .trait-dot.admin { background: var(--accent-admin); }
         .trait-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--accent-1);
             flex-shrink: 0;
         }
 
@@ -304,12 +302,10 @@
             color: var(--text-primary);
             margin-bottom: 1.5rem;
         }
-        .about-card h3 span {
-            color: var(--accent-1);
-        }
+        .about-card h3 .dev-highlight { color: var(--accent-dev); }
+        .about-card h3 .admin-highlight { color: var(--accent-admin); }
         .about-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; }
         .about-card .usp {
-            background: var(--gradient-glow);
             border-radius: 12px;
             padding: 1.25rem;
             margin-top: 1.5rem;
@@ -317,38 +313,58 @@
         }
         .about-card .usp p { color: var(--text-primary); font-weight: 500; }
 
-        /* ── SERVICES ── */
+        /* ── SERVICES GRID WITH SEPARATION ── */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .services-column {
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
         }
+        .services-column .column-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .services-column.dev-col .column-label { color: var(--accent-dev); border-color: var(--accent-dev); }
+        .services-column.admin-col .column-label { color: var(--accent-admin); border-color: var(--accent-admin); }
+
         .service-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-card);
-            padding: 2rem;
+            padding: 1.75rem;
             transition: var(--transition);
             box-shadow: var(--shadow-card);
         }
         .service-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(201,123,99,0.10);
-            box-shadow: 0 12px 48px rgba(0,0,0,0.04), 0 0 0 1px rgba(201,123,99,0.04);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.04);
         }
+        .service-card.dev-card:hover { border-color: rgba(201,123,99,0.12); }
+        .service-card.admin-card:hover { border-color: rgba(107,140,124,0.12); }
         .service-card::before {
             content: '';
             display: block;
             height: 3px;
             width: 40px;
-            background: var(--gradient-main);
             border-radius: 10px;
             margin-bottom: 1rem;
         }
-        .service-card.teal::before { background: linear-gradient(135deg, #d4a08c, #c97b63); }
-        .service-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .service-card.dev-card::before { background: var(--gradient-dev); }
+        .service-card.admin-card::before { background: var(--gradient-admin); }
+        .service-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
         .service-card h3 {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.25rem;
@@ -356,25 +372,37 @@
         .service-rate {
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--accent-1);
-            background: rgba(201,123,99,0.06);
             padding: 0.2rem 0.8rem;
             border-radius: var(--radius-pill);
             display: inline-block;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .service-card.dev-card .service-rate {
+            color: var(--accent-dev);
+            background: rgba(201,123,99,0.06);
+        }
+        .service-card.admin-card .service-rate {
+            color: var(--accent-admin);
+            background: rgba(107,140,124,0.06);
         }
         .service-card ul { list-style: none; }
         .service-card ul li {
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            padding: 0.3rem 0;
+            padding: 0.25rem 0;
             display: flex;
             gap: 0.5rem;
             align-items: flex-start;
         }
-        .service-card ul li::before {
+        .service-card.dev-card ul li::before {
             content: '✦';
-            color: var(--accent-1);
+            color: var(--accent-dev);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .service-card.admin-card ul li::before {
+            content: '●';
+            color: var(--accent-admin);
             font-weight: 700;
             flex-shrink: 0;
         }
@@ -397,15 +425,23 @@
         .skills-expanding p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; }
         .expanding-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; }
         .pill {
-            background: rgba(201,123,99,0.04);
-            color: var(--text-secondary);
             padding: 0.4rem 1.2rem;
             border-radius: var(--radius-pill);
             font-size: 0.8rem;
-            border: 1px solid rgba(201,123,99,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
             transition: var(--transition);
         }
-        .pill:hover { background: rgba(201,123,99,0.08); color: var(--text-primary); }
+        .pill.dev-pill {
+            background: rgba(201,123,99,0.04);
+            color: var(--accent-dev);
+        }
+        .pill.admin-pill {
+            background: rgba(107,140,124,0.04);
+            color: var(--accent-admin);
+        }
+        .pill:hover { transform: translateY(-2px); }
+        .pill.dev-pill:hover { background: rgba(201,123,99,0.08); }
+        .pill.admin-pill:hover { background: rgba(107,140,124,0.08); }
 
         /* ── PACKAGES ── */
         .packages-grid {
@@ -422,11 +458,9 @@
             transition: var(--transition);
             box-shadow: var(--shadow-card);
         }
-        .pkg:hover { border-color: rgba(201,123,99,0.08); transform: translateY(-4px); }
-        .pkg.featured {
-            border-color: rgba(201,123,99,0.10);
-            background: var(--gradient-glow);
-        }
+        .pkg:hover { transform: translateY(-4px); }
+        .pkg.featured-dev { border-color: rgba(201,123,99,0.12); background: rgba(201,123,99,0.02); }
+        .pkg.featured-admin { border-color: rgba(107,140,124,0.12); background: rgba(107,140,124,0.02); }
         .pkg-label {
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -441,10 +475,11 @@
             color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
+        .pkg-price-dev { color: var(--accent-dev); }
+        .pkg-price-admin { color: var(--accent-admin); }
         .pkg-price {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--accent-1);
             margin-bottom: 0.25rem;
         }
         .pkg-period { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem; }
@@ -459,12 +494,12 @@
         }
         .pkg-features li::before {
             content: '✓';
-            color: var(--accent-1);
             font-weight: 700;
             flex-shrink: 0;
         }
+        .pkg.featured-dev .pkg-features li::before { color: var(--accent-dev); }
+        .pkg.featured-admin .pkg-features li::before { color: var(--accent-admin); }
         .popular-badge {
-            background: var(--gradient-main);
             color: #fff;
             font-size: 0.65rem;
             font-weight: 700;
@@ -475,6 +510,8 @@
             display: inline-block;
             margin-bottom: 1rem;
         }
+        .popular-badge.dev-badge { background: var(--gradient-dev); }
+        .popular-badge.admin-badge { background: var(--gradient-admin); }
 
         /* ── TOOLS ── */
         .tools-category { margin-bottom: 2.5rem; }
@@ -502,7 +539,9 @@
             color: var(--text-secondary);
             transition: var(--transition);
         }
-        .tool-badge:hover { border-color: rgba(201,123,99,0.10); color: var(--text-primary); }
+        .tool-badge:hover { color: var(--text-primary); }
+        .tool-badge.dev-tool:hover { border-color: rgba(201,123,99,0.10); }
+        .tool-badge.admin-tool:hover { border-color: rgba(107,140,124,0.10); }
         .tool-icon {
             width: 22px; height: 22px;
             border-radius: 6px;
@@ -533,9 +572,10 @@
         }
         .portfolio-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(201,123,99,0.06);
-            box-shadow: 0 12px 48px rgba(0,0,0,0.04), 0 0 0 1px rgba(201,123,99,0.02);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.04);
         }
+        .portfolio-card.dev-port:hover { border-color: rgba(201,123,99,0.08); }
+        .portfolio-card.admin-port:hover { border-color: rgba(107,140,124,0.08); }
         .portfolio-thumb {
             height: 160px;
             display: flex;
@@ -543,7 +583,7 @@
             justify-content: center;
             font-size: 2.5rem;
             overflow: hidden;
-            background: var(--gradient-glow);
+            background: var(--bg-alt);
             border-bottom: 1px solid var(--border-subtle);
         }
         .portfolio-thumb img {
@@ -564,13 +604,19 @@
         }
         .portfolio-tag {
             font-size: 0.7rem;
-            background: rgba(201,123,99,0.06);
-            color: var(--accent-1);
             padding: 0.2rem 0.7rem;
             border-radius: var(--radius-pill);
             display: inline-block;
             margin-top: 0.75rem;
             font-weight: 500;
+        }
+        .portfolio-tag.dev-tag {
+            background: rgba(201,123,99,0.06);
+            color: var(--accent-dev);
+        }
+        .portfolio-tag.admin-tag {
+            background: rgba(107,140,124,0.06);
+            color: var(--accent-admin);
         }
 
         /* ── EXPERIENCE ── */
@@ -589,19 +635,21 @@
         .exp-dot {
             width: 14px; height: 14px;
             border-radius: 50%;
-            background: var(--gradient-main);
             flex-shrink: 0;
         }
+        .exp-dot.dev-dot { background: var(--gradient-dev); }
+        .exp-dot.admin-dot { background: var(--gradient-admin); }
         .exp-line { width: 1px; background: var(--border-subtle); flex: 1; margin-top: 6px; }
         .exp-content h4 { font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem; }
         .exp-content .exp-role {
             font-size: 0.75rem;
-            color: var(--accent-1);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-bottom: 0.5rem;
         }
+        .exp-content .exp-role.dev-role { color: var(--accent-dev); }
+        .exp-content .exp-role.admin-role { color: var(--accent-admin); }
         .exp-content p { font-size: 0.9rem; color: var(--text-secondary); }
 
         /* ── VIDEO ── */
@@ -656,9 +704,10 @@
             color: var(--text-primary);
         }
         .contact-method:hover {
-            border-color: rgba(201,123,99,0.08);
             transform: translateX(6px);
         }
+        .contact-method.dev-method:hover { border-color: rgba(201,123,99,0.08); }
+        .contact-method.admin-method:hover { border-color: rgba(107,140,124,0.08); }
         .contact-icon {
             width: 42px; height: 42px;
             border-radius: 12px;
@@ -667,7 +716,7 @@
             justify-content: center;
             font-size: 1.1rem;
             flex-shrink: 0;
-            background: rgba(201,123,99,0.04);
+            background: rgba(0,0,0,0.02);
         }
         .contact-detail span { display: block; font-size: 0.7rem; color: var(--text-muted); }
         .contact-detail strong { font-size: 0.9rem; font-weight: 600; }
@@ -705,7 +754,7 @@
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: var(--accent-1);
+            border-color: var(--accent-dev);
             background: rgba(201,123,99,0.02);
         }
         .form-group textarea { height: 120px; resize: vertical; }
@@ -720,7 +769,7 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
-        footer a { color: var(--accent-1); text-decoration: none; }
+        footer a { color: var(--accent-dev); text-decoration: none; }
         footer a:hover { color: var(--text-primary); }
         .footer-name {
             font-weight: 700;
@@ -728,6 +777,8 @@
             color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
+        .footer-name .dev-color { color: var(--accent-dev); }
+        .footer-name .admin-color { color: var(--accent-admin); }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
@@ -751,6 +802,10 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
             .nav-links {
                 display: none;
             }
@@ -767,7 +822,7 @@
 
 <!-- ─── NAV ─── -->
 <nav>
-    <a href="#home" class="nav-logo">P<span>D</span>F</a>
+    <a href="#home" class="nav-logo">P<span class="dev">D</span><span class="admin">F</span></a>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
@@ -783,11 +838,10 @@
     <div class="hero">
         <div class="hero-text">
             <div class="hero-badge">✦ Available Worldwide · Remote</div>
-            <h1>Build, Test, Design —<br /><span>I Do It All</span></h1>
+            <h1>Build, Test, Design —<br /><span class="dev-color">I Do It All</span></h1>
             <p class="hero-tagline">
-                Web developer, system tester, UI designer, and admin generalist —
-                I don't box myself into one title. I solve problems, build systems,
-                and deliver quality work across the board.
+                <span class="dev-color">Web Developer</span> · <span class="admin-color">System Tester</span> · <span class="dev-color">UI Designer</span> · <span class="admin-color">Admin Generalist</span> — 
+                I solve problems, build systems, and deliver quality work across the board.
             </p>
             <div class="hero-ctas">
                 <a href="#contact" class="btn-primary">Hire Me Now</a>
@@ -813,23 +867,23 @@
 <section id="about" class="alt-bg">
     <div class="container">
         <p class="section-tag">About Me</p>
-        <h2 class="section-title">The Multi-Skilled Professional <span class="highlight">Who Delivers</span></h2>
+        <h2 class="section-title">The Multi-Skilled Professional <span class="dev-highlight">Who Delivers</span></h2>
         <div class="about-grid">
             <div class="about-text">
-                <p>Hi, I'm <strong>Paul David S. Ferrer</strong> — a versatile IT professional based in the Philippines. I don't limit myself to one role. Whether it's <strong>web development</strong>, <strong>system testing</strong>, <strong>UI design</strong>, or <strong>general administration</strong>, I bring the same dedication, curiosity, and quality to every task.</p>
+                <p>Hi, I'm <strong>Paul David S. Ferrer</strong> — a versatile IT professional based in the Philippines. I don't limit myself to one role. Whether it's <strong class="dev-color">web development</strong>, <strong class="admin-color">system testing</strong>, <strong class="dev-color">UI design</strong>, or <strong class="admin-color">general administration</strong>, I bring the same dedication, curiosity, and quality to every task.</p>
                 <p>I led the development of <strong>Corpora-Online</strong> as Team Leader and completed a 486-hour practicum as a System Developer. I've built real-time chat systems, appointment schedulers with feedback, grading systems, and defense management tools — all with a focus on clean code and user-friendly design.</p>
                 <div class="traits">
-                    <div class="trait"><div class="trait-dot"></div>Full-Stack Laravel</div>
-                    <div class="trait"><div class="trait-dot"></div>System Testing</div>
-                    <div class="trait"><div class="trait-dot"></div>UI/UX Design</div>
-                    <div class="trait"><div class="trait-dot"></div>Technical Support</div>
-                    <div class="trait"><div class="trait-dot"></div>Admin &amp; Ops</div>
-                    <div class="trait"><div class="trait-dot"></div>Fast Learner</div>
+                    <div class="trait"><div class="trait-dot dev"></div>Full-Stack Laravel</div>
+                    <div class="trait"><div class="trait-dot admin"></div>System Testing</div>
+                    <div class="trait"><div class="trait-dot dev"></div>UI/UX Design</div>
+                    <div class="trait"><div class="trait-dot admin"></div>Technical Support</div>
+                    <div class="trait"><div class="trait-dot admin"></div>Admin &amp; Ops</div>
+                    <div class="trait"><div class="trait-dot dev"></div>Fast Learner</div>
                 </div>
             </div>
             <div>
                 <div class="about-card">
-                    <h3>Why Work <span>With Me</span></h3>
+                    <h3>Why Work <span class="dev-highlight">With</span> <span class="admin-highlight">Me</span></h3>
                     <p>I don't just complete tasks — I anticipate what you need next. I'm comfortable wearing multiple hats and thrive in fast-paced environments. Whether you need code written, systems tested, designs polished, or operations streamlined, I'm ready to step in and deliver.</p>
                     <div class="usp">
                         <p>💡 "I'm not looking for a job title. I'm looking for problems to solve and systems to improve. That's where I shine."</p>
@@ -840,77 +894,108 @@
     </div>
 </section>
 
-<!-- ─── SERVICES ─── -->
+<!-- ─── SERVICES WITH SEPARATION ─── -->
 <section id="services">
     <div class="container">
         <p class="section-tag">Services &amp; Rates</p>
-        <h2 class="section-title">What I Can <span class="highlight">Do for You</span></h2>
-        <p class="section-sub">Flexible, transparent rates for startups, agencies, and growing businesses — no matter what you need, I can help.</p>
+        <h2 class="section-title">Two Niches — <span class="dev-highlight">One</span> <span class="admin-highlight">Professional</span></h2>
+        <p class="section-sub">Choose the expertise you need. I'm equally comfortable in both worlds.</p>
         <div class="services-grid">
-
-            <div class="service-card">
-                <div class="service-icon">💻</div>
-                <h3>Web Development</h3>
-                <span class="service-rate">$10 – $15 / hr</span>
-                <ul>
-                    <li>Laravel &amp; PHP development</li>
-                    <li>Custom web applications</li>
-                    <li>Real-time features (chat, notifications)</li>
-                    <li>Database design &amp; optimization</li>
-                    <li>API integration</li>
-                </ul>
+            
+            <!-- ===== DEVELOPMENT COLUMN ===== -->
+            <div class="services-column dev-col">
+                <div class="column-label">💻 Development &amp; Design</div>
+                
+                <div class="service-card dev-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Web Development</h3>
+                    <span class="service-rate">$10 – $15 / hr</span>
+                    <ul>
+                        <li>Laravel &amp; PHP full-stack development</li>
+                        <li>Custom web applications &amp; APIs</li>
+                        <li>Real-time features (chat, notifications)</li>
+                        <li>Database design &amp; optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card dev-card">
+                    <div class="service-icon">🧪</div>
+                    <h3>System Testing &amp; QA</h3>
+                    <span class="service-rate">$8 – $12 / hr</span>
+                    <ul>
+                        <li>Manual testing &amp; bug reporting</li>
+                        <li>User acceptance testing</li>
+                        <li>Cross-browser &amp; device testing</li>
+                        <li>Performance &amp; security checks</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card dev-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <span class="service-rate">$10 – $15 / hr</span>
+                    <ul>
+                        <li>Figma prototypes &amp; wireframes</li>
+                        <li>Modern, clean UI design</li>
+                        <li>Design systems &amp; components</li>
+                        <li>Mobile-first responsive layouts</li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="service-card teal">
-                <div class="service-icon">🧪</div>
-                <h3>System Testing &amp; QA</h3>
-                <span class="service-rate">$8 – $12 / hr</span>
-                <ul>
-                    <li>Manual testing &amp; bug reporting</li>
-                    <li>User acceptance testing</li>
-                    <li>Test case creation</li>
-                    <li>Cross-browser &amp; device testing</li>
-                    <li>Performance &amp; security checks</li>
-                </ul>
+            
+            <!-- ===== ADMIN COLUMN ===== -->
+            <div class="services-column admin-col">
+                <div class="column-label">📋 General Administration</div>
+                
+                <div class="service-card admin-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Admin &amp; Operations Support</h3>
+                    <span class="service-rate">$6 – $10 / hr</span>
+                    <ul>
+                        <li>General administration &amp; coordination</li>
+                        <li>Document management &amp; data entry</li>
+                        <li>Process documentation &amp; SOP creation</li>
+                        <li>Task &amp; project coordination</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card admin-card">
+                    <div class="service-icon">🎧</div>
+                    <h3>Technical Support</h3>
+                    <span class="service-rate">$7 – $10 / hr</span>
+                    <ul>
+                        <li>User support &amp; troubleshooting</li>
+                        <li>Help desk &amp; ticket management</li>
+                        <li>System onboarding &amp; training</li>
+                        <li>Bug triage &amp; user feedback collection</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card admin-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Data &amp; Document Management</h3>
+                    <span class="service-rate">$6 – $9 / hr</span>
+                    <ul>
+                        <li>Data entry &amp; spreadsheet management</li>
+                        <li>File organization &amp; digital filing</li>
+                        <li>Document formatting &amp; processing</li>
+                        <li>CRM data management</li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>UI/UX Design</h3>
-                <span class="service-rate">$10 – $15 / hr</span>
-                <ul>
-                    <li>Figma prototypes &amp; wireframes</li>
-                    <li>Modern, clean UI design</li>
-                    <li>Design systems &amp; components</li>
-                    <li>Mobile-first responsive layouts</li>
-                    <li>User flow optimization</li>
-                </ul>
-            </div>
-
-            <div class="service-card teal">
-                <div class="service-icon">📋</div>
-                <h3>Admin &amp; Operations</h3>
-                <span class="service-rate">$6 – $10 / hr</span>
-                <ul>
-                    <li>General administration &amp; coordination</li>
-                    <li>Document management &amp; data entry</li>
-                    <li>Technical support for users</li>
-                    <li>Process documentation</li>
-                    <li>Task &amp; project coordination</li>
-                </ul>
-            </div>
-
+            
         </div>
 
         <div class="skills-expanding">
             <h3>🌱 Currently Expanding — Always Learning</h3>
             <p>I believe in growing with my clients. These are skills I'm actively developing to serve you even better:</p>
             <div class="expanding-pills">
-                <span class="pill">React.js</span>
-                <span class="pill">Flutter</span>
-                <span class="pill">Cloud Deployment</span>
-                <span class="pill">DevOps Basics</span>
-                <span class="pill">AI Integration</span>
+                <span class="pill dev-pill">React.js</span>
+                <span class="pill dev-pill">Flutter</span>
+                <span class="pill admin-pill">Project Management</span>
+                <span class="pill dev-pill">Cloud Deployment</span>
+                <span class="pill admin-pill">Operations Strategy</span>
+                <span class="pill dev-pill">AI Integration</span>
             </div>
         </div>
     </div>
@@ -920,13 +1005,13 @@
 <section class="alt-bg">
     <div class="container">
         <p class="section-tag">Packages</p>
-        <h2 class="section-title">Simple, <span class="highlight">Flexible Pricing</span></h2>
+        <h2 class="section-title">Simple, <span class="dev-highlight">Flexible</span> <span class="admin-highlight">Pricing</span></h2>
         <p class="section-sub">Choose the package that fits your needs. All packages include a free consultation to align on your goals.</p>
         <div class="packages-grid">
             <div class="pkg">
                 <div class="pkg-label">Flexible</div>
                 <h3>Hourly</h3>
-                <div class="pkg-price">$6–$15</div>
+                <div class="pkg-price pkg-price-dev">$6–$15</div>
                 <div class="pkg-period">per hour · pay as you go</div>
                 <ul class="pkg-features">
                     <li>Pay only for work delivered</li>
@@ -936,11 +1021,11 @@
                 </ul>
                 <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Get Started</a>
             </div>
-            <div class="pkg featured">
-                <div class="popular-badge">Most Popular</div>
+            <div class="pkg featured-dev">
+                <div class="popular-badge dev-badge">Most Popular</div>
                 <div class="pkg-label">Dedicated</div>
                 <h3>Weekly Retainer</h3>
-                <div class="pkg-price">$240–$400</div>
+                <div class="pkg-price pkg-price-dev">$240–$400</div>
                 <div class="pkg-period">per week · 20–30 hrs</div>
                 <ul class="pkg-features">
                     <li>Dedicated weekly support hours</li>
@@ -951,10 +1036,11 @@
                 </ul>
                 <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Book This Plan</a>
             </div>
-            <div class="pkg">
+            <div class="pkg featured-admin">
+                <div class="popular-badge admin-badge">Best Value</div>
                 <div class="pkg-label">Full-Service</div>
                 <h3>Monthly Retainer</h3>
-                <div class="pkg-price">$1,000–$1,500</div>
+                <div class="pkg-price pkg-price-admin">$1,000–$1,500</div>
                 <div class="pkg-period">per month · full-time</div>
                 <ul class="pkg-features">
                     <li>Full-time availability (160 hrs)</li>
@@ -973,41 +1059,41 @@
 <section id="experience">
     <div class="container">
         <p class="section-tag">Experience</p>
-        <h2 class="section-title">Where I've <span class="highlight">Made an Impact</span></h2>
+        <h2 class="section-title">Where I've <span class="dev-highlight">Made</span> <span class="admin-highlight">an Impact</span></h2>
         <p class="section-sub">Every role has shaped my ability to deliver across multiple disciplines.</p>
         <div class="timeline">
 
             <div class="exp-item">
-                <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+                <div class="exp-dot-col"><div class="exp-dot dev-dot"></div><div class="exp-line"></div></div>
                 <div class="exp-content">
-                    <div class="exp-role">System Developer</div>
+                    <div class="exp-role dev-role">System Developer</div>
                     <h4>Corpora-Online — Thesis Repository</h4>
                     <p>Led the development of a comprehensive repository system for CBMA. Built features including real-time chat, appointment scheduling with feedback, grading system, and defense comments management (R3Comments).</p>
                 </div>
             </div>
 
             <div class="exp-item">
-                <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+                <div class="exp-dot-col"><div class="exp-dot dev-dot"></div><div class="exp-line"></div></div>
                 <div class="exp-content">
-                    <div class="exp-role">Practicum</div>
+                    <div class="exp-role dev-role">Practicum</div>
                     <h4>System Developer (486 hours)</h4>
                     <p>Completed a 486-hour practicum as a System Developer, gaining hands-on experience in full-stack development, debugging, user support, and production deployment.</p>
                 </div>
             </div>
 
             <div class="exp-item">
-                <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+                <div class="exp-dot-col"><div class="exp-dot dev-dot"></div><div class="exp-line"></div></div>
                 <div class="exp-content">
-                    <div class="exp-role">UI/UX Design</div>
+                    <div class="exp-role dev-role">UI/UX Design</div>
                     <h4>Design Projects (Figma)</h4>
                     <p>Created modern, user-friendly UI designs for web and mobile applications — focusing on clean aesthetics, intuitive navigation, and seamless user experiences.</p>
                 </div>
             </div>
 
             <div class="exp-item">
-                <div class="exp-dot-col"><div class="exp-dot"></div></div>
+                <div class="exp-dot-col"><div class="exp-dot admin-dot"></div></div>
                 <div class="exp-content">
-                    <div class="exp-role">Team Leadership</div>
+                    <div class="exp-role admin-role">Team Leadership</div>
                     <h4>Capstone Team Leader</h4>
                     <p>Led a team of developers to build Corpora-Online from concept to deployment — managing timelines, coordinating tasks, and ensuring quality delivery.</p>
                 </div>
@@ -1021,39 +1107,39 @@
 <section id="tools" class="alt-bg">
     <div class="container">
         <p class="section-tag">Tools &amp; Platforms</p>
-        <h2 class="section-title">I Already Know <span class="highlight">The Tools You Use</span></h2>
+        <h2 class="section-title">I Already Know <span class="dev-highlight">The Tools</span> <span class="admin-highlight">You Use</span></h2>
         <p class="section-sub">No onboarding headaches. I'm ready to work with your stack from day one.</p>
 
         <div class="tools-category">
             <div class="tools-cat-label">⚡ Development</div>
             <div class="tools-grid">
-                <div class="tool-badge"><div class="tool-icon" style="background:#FF2D20;">P</div> PHP</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#F05340;">L</div> Laravel</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#00758F;">M</div> MySQL</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#F7DF1E;">J</div> JavaScript</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#3776AB;">P</div> Python</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#02569B;">F</div> Flutter</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#FF2D20;">P</div> PHP</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F05340;">L</div> Laravel</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#00758F;">M</div> MySQL</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F7DF1E;">J</div> JavaScript</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#3776AB;">P</div> Python</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#02569B;">F</div> Flutter</div>
             </div>
         </div>
 
         <div class="tools-category">
             <div class="tools-cat-label">🎨 Design</div>
             <div class="tools-grid">
-                <div class="tool-badge"><div class="tool-icon" style="background:#F24E1E;">F</div> Figma</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#1C1C1E;">C</div> Canva</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#31A8FF;">P</div> Photoshop</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#F24E1E;">F</div> Figma</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#1C1C1E;">C</div> Canva</div>
+                <div class="tool-badge dev-tool"><div class="tool-icon" style="background:#31A8FF;">P</div> Photoshop</div>
             </div>
         </div>
 
         <div class="tools-category">
             <div class="tools-cat-label">📊 Productivity &amp; AI</div>
             <div class="tools-grid">
-                <div class="tool-badge"><div class="tool-icon" style="background:#10A37F;">C</div> ChatGPT</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#1E90FF;">D</div> DeepSeek</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#4285F4;">G</div> Gemini</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#000000;">C</div> Claude AI</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#217346;">E</div> Excel</div>
-                <div class="tool-badge"><div class="tool-icon" style="background:#0F9D58;">D</div> Google Docs</div>
+                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#10A37F;">C</div> ChatGPT</div>
+                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#1E90FF;">D</div> DeepSeek</div>
+                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#4285F4;">G</div> Gemini</div>
+                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#000000;">C</div> Claude AI</div>
+                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#217346;">E</div> Excel</div>
+                <div class="tool-badge admin-tool"><div class="tool-icon" style="background:#0F9D58;">D</div> Google Docs</div>
             </div>
         </div>
     </div>
@@ -1063,20 +1149,20 @@
 <section id="portfolio">
     <div class="container">
         <p class="section-tag">Portfolio</p>
-        <h2 class="section-title">See What <span class="highlight">I've Built</span></h2>
+        <h2 class="section-title">See What <span class="dev-highlight">I've</span> <span class="admin-highlight">Built</span></h2>
         <p class="section-sub">Real projects — from development to design. Click any card to view the live project or gallery.</p>
         <div class="portfolio-grid">
 
-            <a href="https://corpora-online.site/" target="_blank" class="portfolio-card" style="text-decoration:none; color:inherit;">
+            <a href="https://corpora-online.site/" target="_blank" class="portfolio-card dev-port" style="text-decoration:none; color:inherit;">
                 <div class="portfolio-thumb" style="background:linear-gradient(135deg, rgba(201,123,99,0.06), rgba(212,160,140,0.06)); font-size:3rem;">📚</div>
                 <div class="portfolio-body">
                     <h4>Corpora-Online</h4>
                     <p>Thesis repository system for CBMA — with real-time chat, appointment scheduling, grading, and defense comments.</p>
-                    <span class="portfolio-tag">Live Site →</span>
+                    <span class="portfolio-tag dev-tag">Live Site →</span>
                 </div>
             </a>
 
-            <div class="portfolio-card">
+            <div class="portfolio-card dev-port">
                 <div class="portfolio-thumb" style="background:linear-gradient(135deg, #f5f0eb, #ede8e2); color:var(--text-primary); font-size:2rem; flex-direction:column; gap:0.25rem;">
                     💬
                     <span style="font-size:0.7rem; opacity:0.4;">Real-time Chat</span>
@@ -1084,11 +1170,11 @@
                 <div class="portfolio-body">
                     <h4>Real-time Chat System</h4>
                     <p>Integrated chat feature enabling seamless communication between students, faculty, and administrators within Corpora-Online.</p>
-                    <span class="portfolio-tag">Laravel · WebSocket</span>
+                    <span class="portfolio-tag dev-tag">Laravel · WebSocket</span>
                 </div>
             </div>
 
-            <div class="portfolio-card">
+            <div class="portfolio-card dev-port">
                 <div class="portfolio-thumb" style="background:linear-gradient(135deg, #f0ebe5, #e8e2db); color:var(--text-primary); font-size:2rem; flex-direction:column; gap:0.25rem;">
                     📅
                     <span style="font-size:0.7rem; opacity:0.4;">Appointments</span>
@@ -1096,11 +1182,11 @@
                 <div class="portfolio-body">
                     <h4>Appointment &amp; Feedback System</h4>
                     <p>Faculty scheduling with automated management and post-meeting feedback collection from students.</p>
-                    <span class="portfolio-tag">Laravel · MySQL</span>
+                    <span class="portfolio-tag dev-tag">Laravel · MySQL</span>
                 </div>
             </div>
 
-            <div class="portfolio-card">
+            <div class="portfolio-card dev-port">
                 <div class="portfolio-thumb" style="background:linear-gradient(135deg, #e8e4dd, #dfdad3); color:var(--text-primary); font-size:2rem; flex-direction:column; gap:0.25rem;">
                     📊
                     <span style="font-size:0.7rem; opacity:0.4;">Grading</span>
@@ -1108,11 +1194,11 @@
                 <div class="portfolio-body">
                     <h4>Grading System</h4>
                     <p>Comprehensive grade management with real-time calculations, visualization, and automated report generation.</p>
-                    <span class="portfolio-tag">Laravel · JavaScript</span>
+                    <span class="portfolio-tag dev-tag">Laravel · JavaScript</span>
                 </div>
             </div>
 
-            <div class="portfolio-card">
+            <div class="portfolio-card dev-port">
                 <div class="portfolio-thumb" style="background:linear-gradient(135deg, #f0ece6, #e8e2da); color:var(--text-primary); font-size:2rem; flex-direction:column; gap:0.25rem;">
                     📝
                     <span style="font-size:0.7rem; opacity:0.4;">Defense</span>
@@ -1120,11 +1206,11 @@
                 <div class="portfolio-body">
                     <h4>Defense Comments System</h4>
                     <p>R3Comments feature for thesis defense management — allowing panel members to provide structured feedback and evaluations.</p>
-                    <span class="portfolio-tag">Laravel · AJAX</span>
+                    <span class="portfolio-tag dev-tag">Laravel · AJAX</span>
                 </div>
             </div>
 
-            <div class="portfolio-card">
+            <div class="portfolio-card dev-port">
                 <div class="portfolio-thumb" style="background:linear-gradient(135deg, #f5f0eb, #ede8e2); color:var(--text-primary); font-size:2rem; flex-direction:column; gap:0.25rem;">
                     🎨
                     <span style="font-size:0.7rem; opacity:0.4;">UI Design</span>
@@ -1132,7 +1218,7 @@
                 <div class="portfolio-body">
                     <h4>UI Design (Figma)</h4>
                     <p>Modern, user-friendly UI/UX designs for web and mobile applications — focused on clean aesthetics and intuitive navigation.</p>
-                    <span class="portfolio-tag">Figma · Prototyping</span>
+                    <span class="portfolio-tag dev-tag">Figma · Prototyping</span>
                 </div>
             </div>
 
@@ -1144,7 +1230,7 @@
 <section class="alt-bg">
     <div class="container video-section">
         <p class="section-tag">Video Introduction</p>
-        <h2 class="section-title">Meet Paul — <span class="highlight">In His Own Words</span></h2>
+        <h2 class="section-title">Meet Paul — <span class="dev-highlight">In His</span> <span class="admin-highlight">Own Words</span></h2>
         <p class="section-sub" style="margin:0 auto 2rem;">A quick introduction so you can put a face to the name before we work together.</p>
         <div class="video-box">
             <div style="position:relative; width:100%; padding-top:56.25%;">
@@ -1163,7 +1249,7 @@
 <section id="contact" class="alt-bg">
     <div class="container">
         <p class="section-tag">Get in Touch</p>
-        <h2 class="section-title">Ready to <span class="highlight">Work Together?</span></h2>
+        <h2 class="section-title">Ready to <span class="dev-highlight">Work</span> <span class="admin-highlight">Together?</span></h2>
         <div class="contact-grid">
             <div>
                 <div class="contact-text">
@@ -1171,19 +1257,19 @@
                     <p style="margin-top:-0.5rem;">Below are the best ways to reach me. Let's build something great together.</p>
                 </div>
                 <div class="contact-methods">
-                    <a href="mailto:pauldavidferrer7@gmail.com" class="contact-method">
+                    <a href="mailto:pauldavidferrer7@gmail.com" class="contact-method dev-method">
                         <div class="contact-icon" style="background:rgba(201,123,99,0.04);">📧</div>
                         <div class="contact-detail"><span>Email</span><strong>pauldavidferrer7@gmail.com</strong></div>
                     </a>
-                    <a href="https://wa.me/639078084749" target="_blank" class="contact-method">
+                    <a href="https://wa.me/639078084749" target="_blank" class="contact-method dev-method">
                         <div class="contact-icon" style="background:rgba(201,123,99,0.04);">💬</div>
                         <div class="contact-detail"><span>WhatsApp</span><strong>+63 907 8084 749</strong></div>
                     </a>
-                    <a href="https://www.linkedin.com/in/ferrer-paul-david-4a1b71410" target="_blank" class="contact-method">
-                        <div class="contact-icon" style="background:rgba(201,123,99,0.04);">💼</div>
+                    <a href="https://www.linkedin.com/in/ferrer-paul-david-4a1b71410" target="_blank" class="contact-method admin-method">
+                        <div class="contact-icon" style="background:rgba(107,140,124,0.04);">💼</div>
                         <div class="contact-detail"><span>LinkedIn</span><strong>Paul David Ferrer</strong></div>
                     </a>
-                    <a href="https://calendly.com/pauldavidferrer/30min" target="_blank" class="contact-method">
+                    <a href="https://calendly.com/pauldavidferrer/30min" target="_blank" class="contact-method dev-method">
                         <div class="contact-icon" style="background:rgba(201,123,99,0.04);">📅</div>
                         <div class="contact-detail"><span>Schedule</span><strong>Free 30-min Call</strong></div>
                     </a>
@@ -1206,6 +1292,7 @@
                         <option>System Testing</option>
                         <option>UI/UX Design</option>
                         <option>Admin Support</option>
+                        <option>Technical Support</option>
                         <option>Multiple Services</option>
                     </select>
                 </div>
@@ -1221,8 +1308,8 @@
 
 <!-- ─── FOOTER ─── -->
 <footer>
-    <p class="footer-name">Paul David S. Ferrer</p>
-    <p>Web Development · System Testing · UI/UX Design · Admin Support</p>
+    <p class="footer-name">Paul David <span class="dev-color">S.</span> <span class="admin-color">Ferrer</span></p>
+    <p><span class="dev-color">Web Development</span> · <span class="admin-color">System Testing</span> · <span class="dev-color">UI/UX Design</span> · <span class="admin-color">Admin Support</span></p>
     <p style="margin-top:0.75rem;">📍 Philippines · <a href="mailto:pauldavidferrer7@gmail.com">pauldavidferrer7@gmail.com</a> · Available Worldwide</p>
     <p style="margin-top:1rem; font-size:0.7rem; opacity:0.4;">© 2026 Paul David S. Ferrer. All rights reserved.</p>
 </footer>
